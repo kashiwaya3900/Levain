@@ -53,6 +53,12 @@ background: #dd5244 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCA
 background-size: 15px 15px;
 }
 
+ul {
+  margin: 0;  /* 余分なマージンを消去 */
+  padding: 0; /* 余分なパディングを消去 */
+  text-align: center; /* 中央寄せ */
+}
+
 li {
   list-style: none;
   text-align: center
