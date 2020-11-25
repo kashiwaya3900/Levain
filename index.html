@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/levain.css">
+  <script src="https://kit.fontawesome.com/08f8c7f086.js" crossorigin="anonymous"></script>
   <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
   <script type="text/javascript" src="js/levain.js"></script>
@@ -126,11 +127,24 @@
     <div class="row">
       <div class="col-12">
         <div class="form-group">
-          <p class="control-label"><b>組み合わせ条件</b></p>
+          <div class="form-inline">
+            <div class="select-type">
+              <label class="col-4 radio-inline"><input type="radio" name="type" value="" id="one"/><i class="fas fa-user"></i></label>
+              <label class="col-4 radio-inline"><input type="radio" name="type" value="" id="two"  checked="checked"/><i class="fas fa-user-friends"></i></label>
+              <label class="col-4 radio-inline"><input type="radio" name="type" value="" id="three"/><i class="fas fa-users"></i></label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
           <div class="form-inline"> 
-          <label class="col-4 radio-inline"><input type="radio" name="radio" checked="checked"> フリー</label> 
-          <label class="col-4 radio-inline"><input type="radio" name="radio"> ♂♂</label> 
-          <label class="col-4 radio-inline"><input type="radio" name="radio"> ♂♀</label> </div>
+            <label class="col-4 radio-inline"><input type="radio" name="radio" checked="checked"> フリー</label> 
+            <label class="col-4 radio-inline"><input type="radio" name="radio"> ♂♂</label>
+            <label class="col-4 radio-inline"><input type="radio" name="radio"> ♂♀</label>
+          </div>
         </div>
       </div>
     </div>

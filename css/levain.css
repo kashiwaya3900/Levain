@@ -66,5 +66,36 @@ ul {
 
 li {
   list-style: none;
-  text-align: center
+  text-align: center;
+}
+
+.select-type {
+  width :100%;
+  text-align: center;
+}
+
+.select-type input {
+  width :100%;
+  text-align: center;
+  display: none;
+}
+.select-type input[type="radio"]:checked + label {
+  #border: 2px solid #3275bc;
+  background-color: #FF773E;
+}
+
+.select-type label {
+  background-color: #373740;
+  border-radius: 4px;
+  font-weight: 700;
+  color: #ffffff;
+  text-align: center;
+  display: inline-block;
+  padding: 5px 0px;
+  width: 100px;
+}
+.select-type label:hover {
+    background-color: #FF773E;
+    #border: 2px solid #aaa;
+    cursor: pointer;
 }
