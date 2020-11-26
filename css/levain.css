@@ -69,7 +69,10 @@ li {
   text-align: center;
 }
 
-/* 組み合わせタイプ*/
+.all-select {
+  width :100%;
+  text-align: center;
+}
 
 .select-type {
   width :100%;
