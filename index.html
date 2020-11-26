@@ -82,6 +82,18 @@
             <span>くどう</span>
         </label>
         </li>
+        <li>
+        <label>
+            <input type="checkbox" name="" value="" />
+            <span>ゲストA</span>
+        </label>
+        </li>
+        <li>
+        <label>
+            <input type="checkbox" name="" value="" />
+            <span>ゲストB</span>
+        </label>
+        </li>
         </ul>
       </div>
       <div class="col-6">
@@ -121,6 +133,18 @@
             <span>さとう(ま)</span>
         </label>
         </li>
+        <li>
+        <label>
+            <input type="checkbox" name="" value="" />
+            <span>ゲスト1</span>
+        </label>
+        </li>
+        <li>
+        <label>
+            <input type="checkbox" name="" value="" />
+            <span>ゲスト2</span>
+        </label>
+        </li>
         </ul>
       </div>
     </div>
@@ -129,9 +153,9 @@
         <div class="form-group">
           <div class="form-inline">
             <div class="select-type">
-              <label class="col-4 radio-inline"><input type="radio" name="type" value="" id="one"/><i class="fas fa-user"></i></label>
-              <label class="col-4 radio-inline"><input type="radio" name="type" value="" id="two"  checked="checked"/><i class="fas fa-user-friends"></i></label>
-              <label class="col-4 radio-inline"><input type="radio" name="type" value="" id="three"/><i class="fas fa-users"></i></label>
+              <input type="radio" name="type" value="a" id="singles"/><label class="col-4 radio-inline" for="singles"><i class="fas fa-user"></i></label>
+              <input type="radio" name="type" value="b" id="doubles" checked="checked"/><label class="col-4 radio-inline" for="doubles"><i class="fas fa-user-friends"></i></label>
+              <input type="radio" name="type" value="c" id="group"/><label class="col-4 radio-inline" for="group"><i class="fas fa-users"></i></label>
             </div>
           </div>
         </div>
@@ -140,16 +164,17 @@
     <div class="row">
       <div class="col-12">
         <div class="form-group">
-          <div class="form-inline"> 
-            <label class="col-4 radio-inline"><input type="radio" name="radio" checked="checked"> フリー</label> 
-            <label class="col-4 radio-inline"><input type="radio" name="radio"> ♂♂</label>
-            <label class="col-4 radio-inline"><input type="radio" name="radio"> ♂♀</label>
+          <div class="form-inline">
+            <div class="select-type">
+              <input type="radio" name="pair" value="1" id="other" checked="checked"/><label class="col-6 radio-inline" for="other"><i class="fas fa-male"></i><i class="fas fa-female"></i></label>
+              <input type="radio" name="pair" value="2" id="same"/><label class="col-6 radio-inline" for="same"><i class="fas fa-male"></i><i class="fas fa-male"></i></label>
+            </div>
           </div>
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="col-12"> <button type="button" id="lottery" class="btn btn-outline-primary btn-block" onclick="Lottery();">抽選</button> </div>
+      <div class="col-12"><button type="button" id="lottery" class="btn btn-primary btn-block" onclick="Lottery();">抽選開始</button></div>
     </div>
   </div>
 </body>

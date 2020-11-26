@@ -69,6 +69,8 @@ li {
   text-align: center;
 }
 
+/* 組み合わせタイプ*/
+
 .select-type {
   width :100%;
   text-align: center;
@@ -79,23 +81,21 @@ li {
   text-align: center;
   display: none;
 }
-.select-type input[type="radio"]:checked + label {
-  #border: 2px solid #3275bc;
-  background-color: #FF773E;
-}
 
 .select-type label {
   background-color: #373740;
   border-radius: 4px;
   font-weight: 700;
+  font-family: 'メイリオ', Meiryo,sans-serif;
   color: #ffffff;
   text-align: center;
   display: inline-block;
   padding: 5px 0px;
   width: 100px;
 }
-.select-type label:hover {
-    background-color: #FF773E;
-    #border: 2px solid #aaa;
-    cursor: pointer;
+.select-type input:checked + label {
+  box-shadow: 0 0 0 -1px #FFF inset;
+  color: #FFF;
+  background: #7EB634;
+  border-color: #7EB634;
 }

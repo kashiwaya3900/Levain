@@ -30,5 +30,6 @@ function Init() {
  */
 function Lottery() {
   console.log('Lottery');
+  alert("Hello");
 }
 
