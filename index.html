@@ -6,14 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/levain.css">
+  <link rel="stylesheet" href="css/jquery.bracket.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/hannari.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/nicomoji.css">
   <script src="https://kit.fontawesome.com/08f8c7f086.js" crossorigin="anonymous"></script>
   <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
   <script type="text/javascript" src="js/levain.js"></script>
+  <script type="text/javascript" src="js/jquery.bracket.min.js"></script>
 </head>
 <body style="background: url(images/tennis.jpg); background-size: contain;">
   <div class="container">
-    <h1>Levain Party!!</h1>
+    <h1>「テニスとわたし、　<br/>　どっちがだいじ?」</h1>
     <form name="form">
     <div class="row">
       <div class="col-6">
@@ -65,11 +69,11 @@
         </label> </li>
           <li> <label>
             <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span>ゲストA</span>
+            <span>ゲスト♂1</span>
         </label> </li>
           <li> <label>
             <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span>ゲストB</span>
+            <span>ゲスト♂2</span>
         </label> </li>
         </ul>
       </div>
@@ -101,11 +105,11 @@
         </label> </li>
           <li> <label>
             <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span>ゲスト1</span>
+            <span>ゲスト♀1</span>
         </label> </li>
           <li> <label>
             <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span>ゲスト2</span>
+            <span>ゲスト♀2</span>
         </label> </li>
         </ul>
       </div>
@@ -152,6 +156,11 @@
     </div>
     <div class="row">
       <div class="col-12"><button type="button" id="lottery" class="btn btn-primary btn-block" onclick="Lottery();">抽選開始</button></div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="demo"></div>
+      </div>
     </div>
   </div>
 </body>

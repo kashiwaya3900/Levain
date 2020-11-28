@@ -11,11 +11,12 @@ input[type=checkbox] {
 }
 
 h1 {
-  font-family:'メイリオ', 'Meiryo', sans-serif;
+  font-family: "Nico Moji";
   text-align: center;
   font-size: 2em;
   color :#ffffff;
-  margin: 30px 0;
+  margin-top: 50px;
+  margin-bottom: 20px;
 }
 
 span {
@@ -26,7 +27,8 @@ span {
   font-size: .85em;
   letter-spacing: 4px;
   text-decoration: none;
-  font-family:'メイリオ', 'Meiryo', sans-serif;
+  #font-family:'メイリオ', 'Meiryo', sans-serif;
+  font-family: "Nico Moji";
   text-align: center;
   width: 130px;
   padding: 5px 0;
