@@ -161,7 +161,7 @@ li {
   color: #ffffff;
   font-family: "Nico Moji";
   text-align: center;
-  width: 130px;
+  width: 85px;
   padding: 5px 0;
   cursor: pointer;
   display: block;
@@ -177,15 +177,25 @@ li {
   color: #ffffff;
   font-family: "Nico Moji";
   text-align: center;
-  width: 130px;
+  width: 85px;
   padding: 5px 0;
   cursor: pointer;
   display: block;
 }
 
 .vs {
-  width: 100%;
-  height: 100%;
+  background-color: #7EB634;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: .85em;
+  letter-spacing: 4px;
+  text-decoration: none;
+  color: #FFFFFF;
+  font-family: "Nico Moji";
+  text-align: center;
+  padding: 5px 0;
+  cursor: pointer;
+  display: block;
 }
 
 .result-male {
@@ -195,3 +205,8 @@ li {
 .result-female {
 
 }
+
+.result-border {
+  
+}
+
