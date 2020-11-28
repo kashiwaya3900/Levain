@@ -184,8 +184,8 @@ li {
 }
 
 .vs {
-  color: #000000;
-  text-align: center;
+  width: 100%;
+  height: 100%;
 }
 
 .result-male {
