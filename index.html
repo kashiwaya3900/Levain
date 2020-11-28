@@ -17,99 +17,99 @@
 </head>
 <body style="background: url(images/tennis.jpg); background-size: contain;">
   <div class="container">
-    <h1>「テニスとわたし、　<br/>　どっちがだいじ?」</h1>
+    <h1>「てにすとわたし、　<br/>　どっちがだいじ?」</h1>
     <form name="form">
     <div class="row">
       <div class="col-6">
       
-        <ul id="male_list">
+        <ul class="male_list">
+          <li> <label>
+            <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
+            <span class="select_member">むとう</span>
+        </label> </li>
           <li><label>
             <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span>いしい</span>
+            <span class="select_member">いしい</span>
         </label> </li>
           <li> <label>
             <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span>むとう</span>
+            <span class="select_member">あさべ</span>
         </label> </li>
           <li> <label>
             <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span>あさべ</span>
+            <span class="select_member">こやま</span>
         </label> </li>
           <li> <label>
             <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span>こやま</span>
+            <span class="select_member">すだ</span>
         </label> </li>
           <li> <label>
             <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span>すだ</span>
+            <span class="select_member">めぐろ</span>
         </label> </li>
           <li> <label>
             <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span>めぐろ</span>
+            <span class="select_member">さとう(た)</span>
         </label> </li>
           <li> <label>
             <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span>さとう(た)</span>
+            <span class="select_member">いしかわ</span>
         </label> </li>
           <li> <label>
             <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span>いしかわ</span>
+            <span class="select_member">あいば</span>
         </label> </li>
           <li> <label>
             <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span>あいば</span>
+            <span class="select_member">たなか</span>
         </label> </li>
           <li> <label>
             <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span>たなか</span>
+            <span class="select_member">くどう</span>
         </label> </li>
           <li> <label>
             <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span>くどう</span>
+            <span class="select_member">ゲスト1</span>
         </label> </li>
           <li> <label>
             <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span>ゲスト♂1</span>
-        </label> </li>
-          <li> <label>
-            <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span>ゲスト♂2</span>
+            <span class="select_member">ゲスト2</span>
         </label> </li>
         </ul>
       </div>
       <div class="col-6">
-        <ul id="female_list">
+        <ul class="female_list">
           <li><label>
             <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span>のと</span>
+            <span class="select_member">のと</span>
         </label> </li>
           <li> <label>
             <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span>すずき</span>
+            <span class="select_member">すずき</span>
         </label> </li>
           <li> <label>
             <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span>かしわや</span>
+            <span class="select_member">かしわや</span>
         </label> </li>
           <li> <label>
             <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span>ふじわら</span>
+            <span class="select_member">ふじわら</span>
         </label> </li>
           <li> <label>
             <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span>かみもと</span>
+            <span class="select_member">かみもと</span>
         </label> </li>
           <li> <label>
             <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span>さとう(ま)</span>
+            <span class="select_member">さとう(ま)</span>
         </label> </li>
           <li> <label>
             <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span>ゲスト♀1</span>
+            <span class="select_member">ゲスト1</span>
         </label> </li>
           <li> <label>
             <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span>ゲスト♀2</span>
+            <span class="select_member">ゲスト2</span>
         </label> </li>
         </ul>
       </div>
@@ -119,9 +119,9 @@
         <div class="form-group">
           <div class="form-inline">
             <div class="all-select">
-              <label id="all">
+              <label class="all">
                 <input type="checkbox" name="all" value="" onClick="AllChecked();"/>
-                <span>全選択</span>
+                <span class="select_member">ALL</span>
               </label>
             </div>
           </div>
@@ -133,7 +133,7 @@
       <div class="col-12">
         <div class="form-group">
           <div class="form-inline">
-            <div class="select-type"> 
+            <div class="select_type"> 
               <input type="radio" name="type" value="a" id="singles" /><label class="col-4 radio-inline" for="singles"><i class="fas fa-user"></i></label> 
               <input type="radio" name="type" value="b" id="doubles" checked="checked" /><label class="col-4 radio-inline" for="doubles"><i class="fas fa-user-friends"></i></label>
               <input type="radio" name="type" value="c" id="group" /><label class="col-4 radio-inline" for="group"><i class="fas fa-users"></i></label> 
@@ -146,7 +146,7 @@
       <div class="col-12">
         <div class="form-group">
           <div class="form-inline">
-            <div class="select-type"> 
+            <div class="select_type"> 
               <input type="radio" name="pair" value="1" id="other" checked="checked" /><label class="col-6 radio-inline" for="other"><i class="fas fa-male"></i><i class="fas fa-female"></i></label>
               <input type="radio" name="pair" value="2" id="same" /><label class="col-6 radio-inline" for="same"><i class="fas fa-male"></i><i class="fas fa-male"></i></label>
             </div>
@@ -155,11 +155,70 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-12"><button type="button" id="lottery" class="btn btn-primary btn-block" onclick="Lottery();">抽選開始</button></div>
+      <div class="col-12"><button type="button" class="btn btn-primary btn-block lottery" onclick="Lottery();">ちゅうせん</button></div>
     </div>
     <div class="row">
+    </div>
+    
+    <!-- doubles -->
+    <div class="row">
       <div class="col-12">
-        <div class="demo"></div>
+        <div class="form-group">
+          <div class="form-inline">
+            <div class="col-1"></div>
+            <div class="col-4"><div><label class="result_member_male">いじゅういん</label></div><div><label class="result_member_male">むとう</label></div></div>
+            <div class="col-2"><div class="vs"><label><i class="fas fa-handshake"></i></label></div></div>
+            <div class="col-4"><div><label class="result_member_male">すだ</label></div><div><label class="result_member_male">いしい</label></div></div>
+            <div class="col-1"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- singles -->
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <div class="form-inline">
+            <div class="col-1"></div>
+            <div class="col-4"><div><label class="result_member_female">のと</label></div></div>
+            <div class="col-2"><div class="vs"><label><i class="fas fa-handshake"></i></label></div></div>
+            <div class="col-4"><div><label class="result_member_female">すずき</label></div></div>
+            <div class="col-1"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- group -->
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <div class="form-inline">
+            <div class="col-1"></div>
+            <div class="col-4"><div><label class="result_member_male">いじゅういん</label></div><div><label class="result_member_male">むとう</label></div></div>
+            <div class="col-2"><div class="vs"><label><i class="fas fa-handshake"></i></div></div>
+            <div class="col-4"><div><label class="result_member_male">すだ</label></div><div><label class="result_member_male">いしい</label></div></div>
+            <div class="col-1"></div>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <div class="form-inline">
+            <div class="col-1"></div>
+            <div class="col-4"><div><label class="result_member_male">いじゅういん</label></div><div><label class="result_member_male">むとう</label></div></div>
+            <div class="col-2"><div class="vs"><label><i class="fas fa-handshake"></i></div></div>
+            <div class="col-4"><div><label class="result_member_male">すだ</label></div><div><label class="result_member_male">いしい</label></div></div>
+            <div class="col-1"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-inline">
+            <div class="col-1"></div>
+            <div class="col-4"><div><label class="result_member_female">のと</label></div></div>
+            <div class="col-2"><div class="vs"><label><i class="fas fa-handshake"></i></label></div></div>
+            <div class="col-4"><div><label class="result_member_female">すずき</label></div></div>
+            <div class="col-1"></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
