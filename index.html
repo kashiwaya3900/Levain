@@ -131,92 +131,136 @@
     </form>
     <div class="row">
       <div class="col-12">
-        <div class="form-group">
-          <div class="form-inline">
-            <div class="select_type"> 
-              <input type="radio" name="type" value="a" id="singles" /><label class="col-4 radio-inline" for="singles"><i class="fas fa-user"></i></label> 
-              <input type="radio" name="type" value="b" id="doubles" checked="checked" /><label class="col-4 radio-inline" for="doubles"><i class="fas fa-user-friends"></i></label>
-              <input type="radio" name="type" value="c" id="group" /><label class="col-4 radio-inline" for="group"><i class="fas fa-users"></i></label> 
-            </div>
+        <div class="form-inline">
+          <div class="select_type"> 
+            <input type="radio" name="type" value="a" id="singles" /><label class="col-4 radio-inline" for="singles"><i class="fas fa-user"></i></label> 
+            <input type="radio" name="type" value="b" id="doubles" checked="checked" /><label class="col-4 radio-inline" for="doubles"><i class="fas fa-user-friends"></i></label>
+            <input type="radio" name="type" value="c" id="group" /><label class="col-4 radio-inline" for="group"><i class="fas fa-users"></i></label> 
           </div>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-12">
-        <div class="form-group">
-          <div class="form-inline">
-            <div class="select_type"> 
-              <input type="radio" name="pair" value="1" id="other" checked="checked" /><label class="col-6 radio-inline" for="other"><i class="fas fa-male"></i><i class="fas fa-female"></i></label>
-              <input type="radio" name="pair" value="2" id="same" /><label class="col-6 radio-inline" for="same"><i class="fas fa-male"></i><i class="fas fa-male"></i></label>
-            </div>
+        <div class="form-inline">
+          <div class="select_type"> 
+            <input type="radio" name="pair" value="1" id="other" checked="checked" /><label class="col-6 radio-inline" for="other"><i class="fas fa-male"></i><i class="fas fa-female"></i></label>
+            <input type="radio" name="pair" value="2" id="same" /><label class="col-6 radio-inline" for="same"><i class="fas fa-male"></i><i class="fas fa-male"></i></label>
           </div>
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="col-12"><button type="button" class="btn btn-primary btn-block lottery" onclick="Lottery();">ちゅうせん</button></div>
-    </div>
-    <div class="row">
+      <div class="col-12 space"><button type="button" class="btn btn-primary btn-block lottery" onclick="Lottery();">ちゅうせん</button></div>
     </div>
     
     <!-- doubles -->
     <div class="row">
-      <div class="col-12">
-        <div class="form-group">
-          <div class="form-inline">
-            <div class="col-1"></div>
-            <div class="col-4"><div><label class="result_member_male">いじゅういん</label></div><div><label class="result_member_male">むとう</label></div></div>
-            <div class="col-2"><div class="vs"><label><i class="fas fa-handshake"></i></label></div></div>
-            <div class="col-4"><div><label class="result_member_male">すだ</label></div><div><label class="result_member_male">いしい</label></div></div>
-            <div class="col-1"></div>
+      <div class="form-inline">
+        <div class="col-5">
+          <div class="result">
+            <label class="result_member_male">かしわや</label>
+            <label class="result_member_male">むとう</label>
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="result">
+            <div class="vs">
+              <label><i class="fas fa-handshake"></i></label>
+            </div>
+          </div>
+        </div>
+        <div class="col-5">
+          <div class="result">
+            <label class="result_member_male">すだ</label>
+            <label class="result_member_male">いしい</label>
           </div>
         </div>
       </div>
     </div>
+    
     <!-- singles -->
     <div class="row">
-      <div class="col-12">
-        <div class="form-group">
-          <div class="form-inline">
-            <div class="col-1"></div>
-            <div class="col-4"><div><label class="result_member_female">のと</label></div></div>
-            <div class="col-2"><div class="vs"><label><i class="fas fa-handshake"></i></label></div></div>
-            <div class="col-4"><div><label class="result_member_female">すずき</label></div></div>
-            <div class="col-1"></div>
+      <div class="form-inline">
+        <div class="col-5">
+          <div class="result">
+            <label class="result_member_female">のと</label>
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="result">
+            <div class="vs"><label><i class="fas fa-handshake"></i></label></div>
+          </div>
+        </div>
+        <div class="col-5">
+          <div class="result">
+            <label class="result_member_female">すずき</label>
           </div>
         </div>
       </div>
     </div>
     <!-- group -->
     <div class="row">
-      <div class="col-12">
-        <div class="form-group">
-          <div class="form-inline">
-            <div class="col-1"></div>
-            <div class="col-4"><div><label class="result_member_male">いじゅういん</label></div><div><label class="result_member_male">むとう</label></div></div>
-            <div class="col-2"><div class="vs"><label><i class="fas fa-handshake"></i></div></div>
-            <div class="col-4"><div><label class="result_member_male">すだ</label></div><div><label class="result_member_male">いしい</label></div></div>
-            <div class="col-1"></div>
+      <div class="form-inline">
+        <div class="col-5">
+          <div class="result">
+            <label class="result_member_male">かしわや</label>
+            <label class="result_member_male">むとう</label>
           </div>
         </div>
-        
-        <div class="form-group">
-          <div class="form-inline">
-            <div class="col-1"></div>
-            <div class="col-4"><div><label class="result_member_male">いじゅういん</label></div><div><label class="result_member_male">むとう</label></div></div>
-            <div class="col-2"><div class="vs"><label><i class="fas fa-handshake"></i></div></div>
-            <div class="col-4"><div><label class="result_member_male">すだ</label></div><div><label class="result_member_male">いしい</label></div></div>
-            <div class="col-1"></div>
+        <div class="col-2">
+          <div class="result">
+            <div class="vs">
+              <label><i class="fas fa-handshake"></i></label>
+            </div>
           </div>
         </div>
-        <div class="form-group">
-          <div class="form-inline">
-            <div class="col-1"></div>
-            <div class="col-4"><div><label class="result_member_female">のと</label></div></div>
-            <div class="col-2"><div class="vs"><label><i class="fas fa-handshake"></i></label></div></div>
-            <div class="col-4"><div><label class="result_member_female">すずき</label></div></div>
-            <div class="col-1"></div>
+        <div class="col-5">
+          <div class="result">
+            <label class="result_member_male">すだ</label>
+            <label class="result_member_male">いしい</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-inline">
+        <div class="col-5">
+          <div class="result">
+            <label class="result_member_male">あさべ</label>
+            <label class="result_member_male">こやま</label>
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="result">
+            <div class="vs">
+              <label><i class="fas fa-handshake"></i></label>
+            </div>
+          </div>
+        </div>
+        <div class="col-5">
+          <div class="result">
+            <label class="result_member_female">かみもと</label>
+            <label class="result_member_male">さとう(た)</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-inline">
+        <div class="col-5">
+          <div class="result">
+            <label class="result_member_female">いしかわ</label>
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="result">
+            <div class="vs"><label><i class="fas fa-handshake"></i></label></div>
+          </div>
+        </div>
+        <div class="col-5">
+          <div class="result">
+            <label class="result_member_female">むとう</label>
           </div>
         </div>
       </div>

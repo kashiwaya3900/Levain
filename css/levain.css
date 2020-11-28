@@ -101,7 +101,7 @@ li {
   text-align: center;
 }
 
-/* 全選択 */
+/* 種別選択 */
 .select_type {
   width :100%;
   text-align: center;
@@ -140,28 +140,47 @@ li {
   font-size: 2em;
 }
 
+/* スペース */
+
+.space {
+  padding-bottom:20px;
+}
+
+/* 種別選択 */
+.result {
+  text-align: center;
+}
+
 .result_member_male{
   background-color: #55FFFF;
   border-radius: 4px;
   font-weight: 700;
+  font-size: .85em;
+  letter-spacing: 4px;
+  text-decoration: none;
   color: #ffffff;
   font-family: "Nico Moji";
   text-align: center;
-  display: inline-block;
-  padding: 5px 0px;
-  width: 100px;
+  width: 130px;
+  padding: 5px 0;
+  cursor: pointer;
+  display: block;
 }
 
 .result_member_female{
   background-color: #FF55FF;
   border-radius: 4px;
   font-weight: 700;
+  font-size: .85em;
+  letter-spacing: 4px;
+  text-decoration: none;
   color: #ffffff;
   font-family: "Nico Moji";
   text-align: center;
-  display: inline-block;
-  padding: 5px 0px;
-  width: 100px;
+  width: 130px;
+  padding: 5px 0;
+  cursor: pointer;
+  display: block;
 }
 
 .vs {
