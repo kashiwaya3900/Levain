@@ -116,7 +116,7 @@ function Lottery() {
     var shuffle_list = ShuffleList(select_member);
     var round_robin_list = CreateRoundRobin(shuffle_list);
     
-   
+    console.log(round_robin_list);
     
     
   }else if(radioVal == "doubles"){
@@ -190,37 +190,7 @@ function CreateRoundRobin(list){
  * 試合順のソート(singles)
  */
 function RoundRobinSinglesSort(round_robin_list,offset,player1,player2,beforePlayer1,beforePlayer2,success_list) {
-  for (var i=0; i<round_robin_list.length; i++){
-    //beforeのペアと比較する
-    if((player1 != beforePlayer1 && player1 != beforePlayer2) && (player2 != beforePlayer1 && player2 != beforePlayer2)) {
-      //処理済リストに入っているかどうか
-      if(success_list.indexOf(i) < 0){
-        //登録可
-        console.log(player1 + ":" +player2);
-        beforePlayer1 = player1;
-        beforePlayer2 = player2;
-        success_list.push(j);
-        success = true;
-        break;
-      }
-    }
-  }
-  if(!success){
-    for (var k=0; k<loopCount; k++){
-      //処理済リストに入っていない
-      if(success_list.indexOf(k) < 0){
-        //登録可
-        var player1 = round_robin_list[k][0];
-        var player2 = round_robin_list[k][1];
-        console.log(player1 + ":" +player2);
-        beforePlayer1 = player1;
-        beforePlayer2 = player2;
-        success_list.push(j);
-        offset = k + 1;
-        success = true;
-      }
-    }
-  }
+  
 }
 
 /**
