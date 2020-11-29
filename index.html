@@ -21,97 +21,10 @@
     <form name="form">
     <div class="row">
       <div class="col-6">
-      
-        <ul class="male_list">
-          <li> <label>
-            <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span class="select_member">むとう</span>
-        </label> </li>
-          <li><label>
-            <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span class="select_member">いしい</span>
-        </label> </li>
-          <li> <label>
-            <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span class="select_member">あさべ</span>
-        </label> </li>
-          <li> <label>
-            <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span class="select_member">こやま</span>
-        </label> </li>
-          <li> <label>
-            <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span class="select_member">すだ</span>
-        </label> </li>
-          <li> <label>
-            <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span class="select_member">めぐろ</span>
-        </label> </li>
-          <li> <label>
-            <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span class="select_member">さとう(た)</span>
-        </label> </li>
-          <li> <label>
-            <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span class="select_member">いしかわ</span>
-        </label> </li>
-          <li> <label>
-            <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span class="select_member">あいば</span>
-        </label> </li>
-          <li> <label>
-            <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span class="select_member">たなか</span>
-        </label> </li>
-          <li> <label>
-            <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span class="select_member">くどう</span>
-        </label> </li>
-          <li> <label>
-            <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span class="select_member">ゲスト1</span>
-        </label> </li>
-          <li> <label>
-            <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span class="select_member">ゲスト2</span>
-        </label> </li>
-        </ul>
+        <ul class="male_list" id="male_list"></ul>
       </div>
       <div class="col-6">
-        <ul class="female_list">
-          <li><label>
-            <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span class="select_member">のと</span>
-        </label> </li>
-          <li> <label>
-            <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span class="select_member">すずき</span>
-        </label> </li>
-          <li> <label>
-            <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span class="select_member">かしわや</span>
-        </label> </li>
-          <li> <label>
-            <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span class="select_member">ふじわら</span>
-        </label> </li>
-          <li> <label>
-            <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span class="select_member">かみもと</span>
-        </label> </li>
-          <li> <label>
-            <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span class="select_member">さとう(ま)</span>
-        </label> </li>
-          <li> <label>
-            <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span class="select_member">ゲスト1</span>
-        </label> </li>
-          <li> <label>
-            <input type="checkbox" name="part" value="" onClick="DisChecked();"/>
-            <span class="select_member">ゲスト2</span>
-        </label> </li>
-        </ul>
+        <ul class="female_list" id="female_list"></ul>
       </div>
     </div>
     <div class="row">
@@ -129,9 +42,9 @@
       <div class="col-12">
         <div class="form-inline">
           <div class="select_type"> 
-            <input type="radio" name="type" value="a" id="singles" /><label class="col-4 radio-inline" for="singles"><i class="fas fa-user"></i></label> 
-            <input type="radio" name="type" value="b" id="doubles" checked="checked" /><label class="col-4 radio-inline" for="doubles"><i class="fas fa-user-friends"></i></label>
-            <input type="radio" name="type" value="c" id="group" /><label class="col-4 radio-inline" for="group"><i class="fas fa-users"></i></label> 
+            <input type="radio" name="type" value="singles" id="singles" onclick="TypeSelected();"/><label class="col-4 radio-inline" for="singles"><i class="fas fa-user"></i></label> 
+            <input type="radio" name="type" value="doubles" id="doubles" onclick="TypeSelected();" checked="checked"/><label class="col-4 radio-inline" for="doubles"><i class="fas fa-user-friends"></i></label>
+            <input type="radio" name="type" value="group" id="group" onclick="TypeSelected();"/><label class="col-4 radio-inline" for="group"><i class="fas fa-users"></i></label> 
           </div>
         </div>
       </div>
@@ -139,15 +52,17 @@
     <div class="row">
       <div class="col-12">
         <div class="form-inline">
-          <div class="select_type"> 
-            <input type="radio" name="pair" value="1" id="other" checked="checked" /><label class="col-6 radio-inline" for="other"><i class="fas fa-male"></i><i class="fas fa-female"></i></label>
-            <input type="radio" name="pair" value="2" id="same" /><label class="col-6 radio-inline" for="same"><i class="fas fa-male"></i><i class="fas fa-male"></i></label>
+          <div class="select_type" id="type_pattern"> 
+            <input type="radio" name="pair" value="other" id="other" checked="checked" /><label class="col-6 radio-inline" for="other"><i class="fas fa-male"></i><i class="fas fa-female"></i></label>
+            <input type="radio" name="pair" value="same" id="same" /><label class="col-6 radio-inline" for="same"><i class="fas fa-male"></i><i class="fas fa-male"></i></label>
           </div>
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="col-12 space"><button type="button" class="btn btn-info btn-block lottery" onclick="Lottery();">ちゅうせん</button></div>
+      <div class="col-12 space">
+        <button type="button" class="btn btn-primary btn-block lottery" onclick="Lottery();">ちゅうせん</button>
+      </div>
     </div>
     
     <!-- doubles -->
@@ -155,12 +70,14 @@
       <div class="col-4">
         <div class="row">
           <div class="col-12">
-            <div class="result"><label class="result_member_male">かしわや</label></div>
-            <!--<label class="result_member_male">かしわや</label>
-            <label class="result_member_male">むとう</label>-->
+            <div class="centering">
+              <label class="result_member_male">かしわや</label>
+            </div>
           </div>
           <div class="col-12">
-            <div class="result d-flex align-items-center justify-content-center"><label class="result_member_male">むとう</label></div>
+            <div class="centering">
+              <label class="result_member_male">むとう</label>
+            </div>
           </div>
         </div>
       </div>
@@ -170,10 +87,14 @@
       <div class="col-4">
         <div class="row">
           <div class="col-12">
-            <div class="result"><label class="result_member_male">すだ</label></div>
+            <div class="centering">
+              <label class="result_member_male">すだ</label>
+            </div>
           </div>
           <div class="col-12">
-            <div class="result"><label class="result_member_male">いしい</label></div>
+            <div class="centering">
+              <label class="result_member_male">いしい</label>
+            </div>
           </div>
         </div>
       </div>
@@ -184,7 +105,9 @@
        <div class="col-4">
         <div class="row">
           <div class="col-12">
-            <div class="result"><label class="result_member_female">のと</label></div>
+            <div class="centering">
+              <label class="result_member_female">のと</label>
+            </div>
           </div>
         </div>
       </div>
@@ -194,29 +117,74 @@
       <div class="col-4">
         <div class="row">
           <div class="col-12">
-            <div class="result"><label class="result_member_female">すずき</label></div>
+            <div class="centering">
+              <label class="result_member_female">すずき</label>
+            </div>
           </div>
         </div>
       </div>
     </div>
     <!-- group -->
     <div class="row">
-      <div class="col-12">
-        <div class="form-inline">
-          <div class="col-4">
-            <div class="result">
+      <div class="col-4">
+        <div class="row">
+          <div class="col-12">
+            <div class="centering">
+              <label class="result_member_male">あさべ</label>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="centering">
+              <label class="result_member_male">こやま</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-4  align-self-center">
+          <label class="vs">VS</label>
+      </div>
+      <div class="col-4">
+        <div class="row">
+          <div class="col-12">
+            <div class="centering">
+              <label class="result_member_male">さとう(た)</label>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="centering">
+              <label class="result_member_female">かみもと</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+        <div class="row">
+      <div class="col-4">
+        <div class="row">
+          <div class="col-12">
+            <div class="centering">
               <label class="result_member_male">かしわや</label>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="centering">
               <label class="result_member_male">むとう</label>
             </div>
           </div>
-          <div class="col-4">
-            <div class="result">
-              <label class="vs">VS</label>
+        </div>
+      </div>
+      <div class="col-4  align-self-center">
+          <label class="vs">VS</label>
+      </div>
+      <div class="col-4">
+        <div class="row">
+          <div class="col-12">
+            <div class="centering">
+              <label class="result_member_male">すだ</label>
             </div>
           </div>
-          <div class="col-4">
-            <div class="result">
-              <label class="result_member_male">すだ</label>
+          <div class="col-12">
+            <div class="centering">
               <label class="result_member_male">いしい</label>
             </div>
           </div>
@@ -224,44 +192,23 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-12">
-        <div class="form-inline">
-          <div class="col-4">
-            <div class="result">
-              <label class="result_member_male">あさべ</label>
-              <label class="result_member_male">こやま</label>
-            </div>
-          </div>
-          <div class="col-4">
-             <div class="result">
-              <label class="vs">VS</label>
-            </div>
-          </div>
-          <div class="col-4">
-            <div class="result">
-              <label class="result_member_female">かみもと</label>
-              <label class="result_member_male">さとう(た)</label>
+       <div class="col-4">
+        <div class="row">
+          <div class="col-12">
+            <div class="centering">
+              <label class="result_member_female">のと</label>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <div class="form-inline">
-          <div class="col-4">
-            <div class="result">
-              <label class="result_member_male">いしかわ</label>
-            </div>
-          </div>
-          <div class="col-4">
-             <div class="result">
-              <label class="vs">VS</label>
-            </div>
-          </div>
-          <div class="col-4">
-            <div class="result">
-              <label class="result_member_male">むとう</label>
+      <div class="col-4  align-self-center">
+          <label class="vs">VS</label>
+      </div>
+      <div class="col-4">
+        <div class="row">
+          <div class="col-12">
+            <div class="centering">
+              <label class="result_member_female">すずき</label>
             </div>
           </div>
         </div>

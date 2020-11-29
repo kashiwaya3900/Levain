@@ -134,6 +134,7 @@ li {
   border-color: #7EB634;
 }
 
+
 /* 抽選ボタン */
 .lottery {
   font-family: "Nico Moji";
@@ -141,16 +142,16 @@ li {
 }
 
 /* スペース */
-
 .space {
   padding-bottom:20px;
 }
 
-/* 種別選択 */
-.result {
+/* 中央寄せ */
+.centering {
   text-align: center;
 }
 
+/* 結果(男性) */
 .result_member_male{
   background-color: #4689FF;
   border-radius: 4px;
@@ -167,6 +168,7 @@ li {
   display: block;
 }
 
+/* 結果(女性) */
 .result_member_female{
   background-color: #FF55FF;
   border-radius: 4px;
@@ -183,6 +185,7 @@ li {
   display: block;
 }
 
+/* VSラベル */
 .vs {
   background-color: #7EB634;
   border-radius: 4px;
@@ -196,10 +199,6 @@ li {
   padding: 5px 0;
   cursor: pointer;
   display: block;
-}
-.vsvs {
-  margin-top: auto;
-  margin-bottom: auto;
 }
 
 .result-male {
