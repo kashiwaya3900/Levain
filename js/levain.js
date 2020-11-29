@@ -116,29 +116,7 @@ function Lottery() {
     var shuffle_list = ShuffleList(select_member);
     var round_robin_list = CreateRoundRobin(shuffle_list);
     
-    var beforePlayer1 = "";
-    var beforePlayer2 = "";
-    var loopCount = round_robin_list.length;
-    
-    var success_list = [];
-    var success = false;
-    var offset=0;
-    
-    for (var i=0; i<loopCount; i++){
-        var player1 = round_robin_list[i][0];
-        var player2 = round_robin_list[i][1];
-        
-        var res_list = RoundRobinSinglesSort(round_robin_list,offset,player1,player2,beforePlayer1,beforePlayer2,success_list)
-        
-        
-        //List[i]を取得する
-        var player1 = round_robin_list[offset][0];
-        var player2 = round_robin_list[offset][1];
-        
-        
-      
-      
-    }
+   
     
     
   }else if(radioVal == "doubles"){
