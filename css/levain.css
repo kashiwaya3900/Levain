@@ -138,6 +138,46 @@ li {
   display: none;
 }
 
+#group_singles {
+  background-color: #373740;
+  border-color: #373740;
+  border-radius: 4px;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: .85em;
+  letter-spacing: 4px;
+  text-decoration: none;
+  font-family: "Nico Moji";
+  text-align: center;
+  width: 75px;
+  height: 34px;
+  padding: 5px 0;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  transition: background-color 150ms ease-in;
+}
+
+
+#group_doubles {
+  background-color: #373740;
+  border-color: #373740;
+  border-radius: 4px;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: .85em;
+  letter-spacing: 4px;
+  text-decoration: none;
+  font-family: "Nico Moji";
+  text-align: center;
+  width: 75px;
+  height: 34px;
+  padding: 5px 0;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  transition: background-color 150ms ease-in;
+}
 
 /* 抽選ボタン */
 .lottery {
@@ -147,6 +187,7 @@ li {
 
 /* スペース */
 .space {
+  padding-top:20px;
   padding-bottom:20px;
 }
 
