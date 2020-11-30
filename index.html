@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
-  <title>組み合わせ</title>
+  <title>てにわた</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/levain.css">
@@ -53,8 +53,20 @@
       <div class="col-12">
         <div class="form-inline">
           <div class="select_type" id="type_pattern"> 
-            <input type="radio" name="pair" value="other" id="other" checked="checked" /><label class="col-6 radio-inline" for="other"><i class="fas fa-male"></i><i class="fas fa-female"></i></label>
-            <input type="radio" name="pair" value="same" id="same" /><label class="col-6 radio-inline" for="same"><i class="fas fa-male"></i><i class="fas fa-male"></i></label>
+            <!--<input type="radio" name="pair" value="other" id="other" checked="checked" /><label class="col-6 radio-inline" for="other"><i class="fas fa-male"></i><i class="fas fa-female"></i></label>
+            <input type="radio" name="pair" value="same" id="same" /><label class="col-6 radio-inline" for="same"><i class="fas fa-male"></i><i class="fas fa-male"></i></label>-->
+    <div class="btn-group">
+     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        ドロップダウン <span class="caret"></span>
+     </button>
+     <ul class="dropdown-menu" role="menu">
+        <li><a href="#">項目１</a></li>
+        <li><a href="#">項目２</a></li>
+        <li><a href="#">項目３</a></li>
+        <li class="divider"></li>
+        <li><a href="#">項目４</a></li>
+     </ul>
+    </div>
           </div>
         </div>
       </div>

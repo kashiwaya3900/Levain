@@ -1,4 +1,5 @@
 var memMap;
+var selectMemMap;
 
 Init();
 /**
@@ -79,9 +80,9 @@ function TypeSelected(){
   console.log('TypeSelected');
   var radioVal = $("input[name='type']:checked").val();
   if(radioVal == "singles" || radioVal == "doubles") {
-    $("#type_pattern").css("display", "block");
+    $('#type_pattern').hide('slow');
   }else{
-    $("#type_pattern").css("display", "none");
+    $('#type_pattern').show('slow');
   }
 }
 
@@ -114,9 +115,111 @@ function Lottery() {
     
     //シャッフル
     var shuffle_list = ShuffleList(select_member);
+    //組み合わせパターン作成
     var round_robin_list = CreateRoundRobin(shuffle_list);
     
-    console.log(round_robin_list);
+    //並び替え
+    
+    var loop_count = round_robin_list.length;
+    var success_list = [];
+    var next_num = 1;
+    var beforePlayer1 = "";
+    var beforePlayer2 = "";
+    
+    for (let i=0; i<loop_count; i++){
+      
+      //左側リスト
+      for (let j=0; j<round_robin_list.length; j++){
+        var list_num = round_robin_list[j][0];
+        var player1 = round_robin_list[j][1];
+        var player2 = round_robin_list[j][2];
+        
+        var first_success = false;
+        
+        if(player1 == next_num){
+          //処理済かどうか
+          if(success_list.indexOf(list_num) < 0){
+            //未処理
+            if((player1 != beforePlayer1 && player1 != beforePlayer2) && (player2 != beforePlayer1 && player2 != beforePlayer2)) {
+              //直前に試合していない
+              
+              //結果リストにつめる
+              
+              //処理済リストにつめる
+              success_list.push(list_num);
+              
+              first_success = true;
+              
+              //次の優先プレイヤーを決める
+              if(player2 + 1 > selectMemMap.size ){
+                if(player1 == 1 || player2 == 1){
+                  next_num = 2;
+                }else{
+                  next_num = 1;
+                }
+              }else {
+                //その他はplayer2 + 1
+                next_num = player2 + 1;
+              }
+              
+              beforePlayer1 = player1;
+              beforePlayer2 = player2;
+              console.log(next_num);
+              console.log(player1);
+              console.log(player2);
+              
+              break;
+            }
+          }
+        }
+      }
+      
+      //左側リストで選べない場合
+      if(!first_success){
+        for (let k=0; k<round_robin_list.length; k++){
+          var list_num = round_robin_list[k][0];
+          var player1 = round_robin_list[k][1];
+          var player2 = round_robin_list[k][2];
+          
+          if(player2 == next_num){
+          
+            //処理済かどうか
+            if(success_list.indexOf(list_num) < 0){
+              //未処理
+              if((player1 != beforePlayer1 && player1 != beforePlayer2) && (player2 != beforePlayer1 && player2 != beforePlayer2)) {
+                success_list.push(list_num);
+                
+                //次の優先プレイヤーを決める
+                if(player2 + 1 > selectMemMap.size ){
+                  //最大値を超える場合は1
+                  next_num = 1;
+                }else {
+                  //その他はplayer2 + 1
+                  next_num = player2 + 1;
+                }
+                
+                beforePlayer1 = player1;
+                beforePlayer2 = player2;
+                
+                console.log(next_num);
+                console.log(player1);
+                console.log(player2);
+                break;
+              }
+            }
+          }
+        }      
+      }
+
+      
+      
+      //処理済かどうか？
+      
+      
+    }
+    
+    
+    
     
     
   }else if(radioVal == "doubles"){
@@ -155,12 +258,16 @@ function Lottery() {
  */
 function ShuffleList(list) {
   newList = [];
-
+  
+  selectMemMap = new Map();
+  var num = 1;
   while (list.length > 0) {
     n = list.length;
     k = Math.floor(Math.random() * n);
 
-    newList.push(list[k]);
+    newList.push([num, list[k]]);
+    selectMemMap.set(num,list[k]);
+    num = num + 1;
     list.splice(k, 1);
   }
   
@@ -171,18 +278,21 @@ function ShuffleList(list) {
  * 総当たり作成処理
  */
 function CreateRoundRobin(list){
-  let member1 = list.concat();
-  let member2 = list.concat();
+  let m1 = list.concat();
+  let m2 = list.concat();
   
   var round_robin = [];
+  var num = 1;
   
-  for(let m1 of member1){
-    member2.shift();
-    for(let m2 of member2){
-        console.log(m1 + ' vs ' + m2);
-        round_robin.push([m1,m2,'']);
+  for (let i=0; i<m1.length; i++){
+    m2.shift();
+    for (let j=0; j<m2.length; j++){
+        console.log(m1[i] + ' vs ' + m2[j]);
+        round_robin.push([num,m1[i][0],m2[j][0]]);
+        num = num + 1;
     }
   }
+
   return round_robin;
 }
 

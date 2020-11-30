@@ -134,6 +134,10 @@ li {
   border-color: #7EB634;
 }
 
+#type_pattern {
+  display: none;
+}
+
 
 /* ’Š‘Iƒ{ƒ^ƒ“ */
 .lottery {
