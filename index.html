@@ -42,9 +42,10 @@
       <div class="col-12">
         <div class="form-inline">
           <div class="select_type"> 
-            <input type="radio" name="type" value="singles" id="singles" onclick="TypeSelected();"/><label class="col-4 radio-inline" for="singles"><i class="fas fa-user"></i></label> 
-            <input type="radio" name="type" value="doubles" id="doubles" onclick="TypeSelected();" checked="checked"/><label class="col-4 radio-inline" for="doubles"><i class="fas fa-user-friends"></i></label>
-            <input type="radio" name="type" value="group" id="group" onclick="TypeSelected();"/><label class="col-4 radio-inline" for="group"><i class="fas fa-users"></i></label> 
+            <input type="radio" name="type" value="singles" id="singles" onclick="TypeSelected();"/><label class="col-3 radio-inline" for="singles"><i class="fas fa-user"></i></label> 
+            <input type="radio" name="type" value="doubles" id="doubles" onclick="TypeSelected();" checked="checked"/><label class="col-3 radio-inline" for="doubles"><i class="fas fa-user-friends"></i></label>
+            <input type="radio" name="type" value="group" id="group" onclick="TypeSelected();"/><label class="col-3 radio-inline" for="group"><i class="fas fa-users"></i></label>
+            <input type="radio" name="type" value="coach" id="coach" onclick="TypeSelected();"/><label class="col-3 radio-inline" for="coach"><i class="fas fa-glasses"></i></label> 
           </div>
         </div>
       </div>
@@ -70,7 +71,7 @@
               <option>5</option>
             </select>
           </div>-->
-          <label class="col-4"><i class="fas fa-user"></i><select id="group_singles">
+          <label class="col-4"><i class="fas fa-user"></i><select id="group_singles" name="group_singles">
               <option>0</option>
               <option>1</option>
               <option>2</option>
@@ -78,7 +79,7 @@
               <option>4</option>
               <option>5</option>
             </select></label> 
-          <label class="col-4"><i class="fas fa-user-friends"></i><select id="group_singles">
+          <label class="col-4"><i class="fas fa-user-friends"></i><select id="group_doubles" name="group_doubles">
               <option>0</option>
               <option>1</option>
               <option>2</option>
@@ -165,9 +166,9 @@
     </div>
     -->
     <!-- group -->
+    <!-- coach -->
     <div class="group">
-      <div class="group_doubles1"></div>
-      <div class="group_doubles2"></div>
+      <div class="group_doubles"></div>
       <div class="group_singles"></div>
     </div>
   </div>

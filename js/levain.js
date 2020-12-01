@@ -92,6 +92,8 @@ function TypeSelected(){
 function Lottery() {
   console.log('Lottery');
   
+  //前回結果をクリア
+  ResultClear();  
   //選択メンバーリスト
   var select_member = [];
   
@@ -218,10 +220,6 @@ function Lottery() {
       
     }
     
-    
-    
-    
-    
   }else if(radioVal == "doubles"){
     //ダブルス
     //4人以上選択していないとシングルスは不可
@@ -231,24 +229,81 @@ function Lottery() {
     }
     //シャッフル
     var shuffle_list = ShuffleList(select_member);
-  }else{
+  }else if(radioVal == "group"){
     //団体戦
-    //10人以上選択していないと団体は不可
-    if(select_member.length < 10){
-      alert("10人以上選択してね");
+    //シングルスの数取得
+    var singles_count = $('[name=group_singles]').val();
+    
+    //ダブルスの数取得
+    var doubles_count = $('[name=group_doubles]').val();
+    
+    //必要な人数の計算
+    var minMember = (singles_count * 1) + (doubles_count * 2)
+    
+    //必要な人数以上選択しているか
+    if(select_member.length < minMember){
+      alert(minMember +  "人以上選択してね");
       return;
     }
     //シャッフル
     var shuffle_list = ShuffleList(select_member);
-    //doubles1
-    $('div.group_doubles1').html(ResultCreateDoubles(shuffle_list[0][1],shuffle_list[1][1],shuffle_list[2][1],shuffle_list[3][1]));
-    //doubles2
-    $('div.group_doubles2').html(ResultCreateDoubles(shuffle_list[4][1],shuffle_list[5][1],shuffle_list[6][1],shuffle_list[7][1]));
-    //singles1
-    $('div.group_singles').html(ResultCreateSingles(shuffle_list[8][1],shuffle_list[9][1]));
     
+    var singlesStr = "";
+    var doublesStr = "";
     
+    var member_count = 0;
+    var order = "";
     
+    for (let j=0; j<singles_count; j++){
+      singlesStr = singlesStr + ResultCreateSingles(shuffle_list[member_count][1],shuffle_list[member_count+1][1]);
+      member_count = member_count + 2;
+    }
+    for (let k=0; k<doubles_count; k++){
+      doublesStr = doublesStr + ResultCreateDoubles(shuffle_list[member_count][1],shuffle_list[member_count + 1][1],shuffle_list[member_count + 2][1],shuffle_list[member_count + 3][1]);
+      member_count = member_count + 4;
+    }
+    
+    $('div.group_doubles').html(doublesStr);
+    $('div.group_singles').html(singlesStr);
+    
+  }else{
+    //コーチ
+    
+    //シングルスの数取得
+    var singles_count = $('[name=group_singles]').val();
+    
+    //ダブルスの数取得
+    var doubles_count = $('[name=group_doubles]').val();
+    
+    //必要な人数の計算
+    var minMember = (singles_count * 1) + (doubles_count * 2)
+    
+    //必要な人数以上選択しているか
+    if(select_member.length < minMember){
+      alert(minMember +  "人以上選択してね");
+      return;
+    }
+    //シャッフル
+    var shuffle_list = ShuffleList(select_member);
+    
+    var singlesStr = "";
+    var doublesStr = "";
+    
+    var member_count = 0;
+    var order = "";
+    for (let j=0; j<singles_count; j++){
+      order = "S" + String(singles_count-j);
+      singlesStr = singlesStr + ResultCreateTeamSingles(shuffle_list[member_count][1],order);
+      member_count = member_count + 1;
+    }
+    for (let k=0; k<doubles_count; k++){
+      order = "D" + String(doubles_count-k);
+      doublesStr = doublesStr + ResultCreateTeamDoubles(shuffle_list[member_count][1],shuffle_list[member_count + 1][1],order);
+      member_count = member_count + 2;
+    }
+    
+    $('div.group_doubles').html(doublesStr);
+    $('div.group_singles').html(singlesStr);
   }
 
 }
@@ -423,4 +478,82 @@ function ResultCreateDoubles(player1,player2,player3,player4){
   + '</div>';
   
   return doubles;
+}
+
+function ResultCreateTeamSingles(player1,order){
+  var singles = "";
+  
+  //性別を取得
+  var gender1;
+  
+   gender1 = memMap.get(player1) == '0' ? "result_member_male" : "result_member_female";
+  
+  singles = '<div class="row">'
+  + '<div class="col-3  align-self-center">'
+  + '<label class="vs">'
+  + order
+  +'</label>'
+  + '</div>'
+  + '<div class="col-9">'
+  + '<div class="col-12">'
+  + '<div class="centering">'
+  + '<label class="'
+  + gender1
+  + '">'
+  + player1
+  + '</label>'
+  + '</div>'
+  + '</div>'
+  + '</div>'
+  + '</div>';
+  
+  return singles;
+}
+
+function ResultCreateTeamDoubles(player1,player2, order){
+  var doubles = "";
+  
+  //性別を取得
+  var gender1;
+  var gender2;
+  
+   gender1 = memMap.get(player1) == '0' ? "result_member_male" : "result_member_female";
+   gender2 = memMap.get(player2) == '0' ? "result_member_male" : "result_member_female";
+  
+  doubles = '<div class="row">'
+  + '<div class="col-3  align-self-center">'
+  + '<label class="vs">'
+  + order
+  + '</label>'
+  + '</div>'
+  + '<div class="col-9">'
+  + '<div class="col-12">'
+  + '<div class="centering">'
+  + '<label class="'
+  + gender1
+  + '">'
+  + player1
+  + '</label>'
+  + '</div>'
+  + '</div>'
+  + '<div class="col-12">'
+  + '<div class="centering">'
+  + '<label class="'
+  + gender2
+  + '">'
+  + player2
+  + '</label>'
+  + '</div>'
+  + '</div>'
+  + '</div>'
+  + '</div>';
+  
+  return doubles;
+}
+
+function ResultClear(){
+  
+  //コーチエリア
+  $('div.group_doubles').html("");
+  $('div.group_singles').html("");
 }
