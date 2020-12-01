@@ -238,7 +238,7 @@ function Lottery() {
     var doubles_count = $('[name=group_doubles]').val();
     
     //必要な人数の計算
-    var minMember = (singles_count * 1) + (doubles_count * 2)
+    var minMember = ((singles_count * 1) + (doubles_count * 2)) * 2
     
     //必要な人数以上選択しているか
     if(select_member.length < minMember){
