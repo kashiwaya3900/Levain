@@ -2,7 +2,6 @@ var memMap;
 var selectMemMap;
 
 Init();
-no_scaling();
 /**
  *初期処理
  */
@@ -242,11 +241,11 @@ function Lottery() {
     //シャッフル
     var shuffle_list = ShuffleList(select_member);
     //doubles1
-    $('div.group_doubles1').html(ResultCreateDoubles(shuffle_list[0],shuffle_list[1],shuffle_list[2],shuffle_list[3]));
+    $('div.group_doubles1').html(ResultCreateDoubles(shuffle_list[0][1],shuffle_list[1][1],shuffle_list[2][1],shuffle_list[3][1]));
     //doubles2
-    $('div.group_doubles2').html(ResultCreateDoubles(shuffle_list[4],shuffle_list[5],shuffle_list[6],shuffle_list[7]));
+    $('div.group_doubles2').html(ResultCreateDoubles(shuffle_list[4][1],shuffle_list[5][1],shuffle_list[6][1],shuffle_list[7][1]));
     //singles1
-    $('div.group_singles').html(ResultCreateSingles(shuffle_list[8],shuffle_list[9]));
+    $('div.group_singles').html(ResultCreateSingles(shuffle_list[8][1],shuffle_list[9][1]));
     
     
     
@@ -424,30 +423,4 @@ function ResultCreateDoubles(player1,player2,player3,player4){
   + '</div>';
   
   return doubles;
-}
-
-
-/**
-* タッチ操作での拡大縮小禁止
-*/
-function no_scaling() {
-    document.addEventListener("touchmove", mobile_no_scroll, { passive: false });
-}
-
-/**
-* タッチ操作での拡大縮小禁止解除
-*/
-function return_scaling() {
-    document.removeEventListener('touchmove', mobile_no_scroll, { passive: false });
-}
-
-/**
-* 拡大縮小禁止
-*/
-function mobile_no_scroll(event) {
-    // ２本指での操作の場合
-    if (event.touches.length >= 2) {
-        // デフォルトの動作をさせない
-        event.preventDefault();
-    }
 }
