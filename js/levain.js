@@ -93,7 +93,8 @@ function Lottery() {
   console.log('Lottery');
   
   //前回結果をクリア
-  ResultClear();  
+  ResultClear();
+  
   //選択メンバーリスト
   var select_member = [];
   

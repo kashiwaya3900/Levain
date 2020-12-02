@@ -16,9 +16,12 @@
   <script type="text/javascript" src="js/jquery.bracket.min.js"></script>
 </head>
 <body style="background: url(images/tennis.jpg); background-size: contain;">
+  <div id="loading">
+    <img src="img/loading.gif" alt="loading">
+  </div>
   <div class="container">
-    <h1>「てにすとわたし、　<br/>　どっちがだいじ?」</h1>
-    <form name="form">
+  <h1>「てにすとわたし、　<br/>　どっちがだいじ?」</h1>
+  <form name="form">
     <div class="row">
       <div class="col-6">
         <ul class="male_list" id="male_list"></ul>
@@ -29,31 +32,24 @@
     </div>
     <div class="row">
       <div class="col-12">
-         <div class="all-select">
-           <label class="all">
+        <div class="all-select"> <label class="all">
              <input type="checkbox" name="all" value="" onClick="AllChecked();"/>
              <span class="select_member">ALL</span>
-           </label>
-         </div>
+           </label> </div>
       </div>
     </div>
-    </form>
-    <div class="row">
-      <div class="col-12">
-        <div class="form-inline">
-          <div class="select_type"> 
-            <input type="radio" name="type" value="singles" id="singles" onclick="TypeSelected();"/><label class="col-3 radio-inline" for="singles"><i class="fas fa-user"></i></label> 
-            <input type="radio" name="type" value="doubles" id="doubles" onclick="TypeSelected();" checked="checked"/><label class="col-3 radio-inline" for="doubles"><i class="fas fa-user-friends"></i></label>
-            <input type="radio" name="type" value="group" id="group" onclick="TypeSelected();"/><label class="col-3 radio-inline" for="group"><i class="fas fa-users"></i></label>
-            <input type="radio" name="type" value="coach" id="coach" onclick="TypeSelected();"/><label class="col-3 radio-inline" for="coach"><i class="fas fa-glasses"></i></label> 
-          </div>
-        </div>
+  </form>
+  <div class="row">
+    <div class="col-12">
+      <div class="form-inline">
+        <div class="select_type"> <input type="radio" name="type" value="singles" id="singles" onclick="TypeSelected();" /><label class="col-3 radio-inline" for="singles"><i class="fas fa-user"></i></label> <input type="radio" name="type" value="doubles" id="doubles" onclick="TypeSelected();" checked="checked" /><label class="col-3 radio-inline" for="doubles"><i class="fas fa-user-friends"></i></label> <input type="radio" name="type" value="group" id="group" onclick="TypeSelected();" /><label class="col-3 radio-inline" for="group"><i class="fas fa-users"></i></label> <input type="radio" name="type" value="coach" id="coach" onclick="TypeSelected();" /><label class="col-3 radio-inline" for="coach"><i class="fas fa-file-signature"></i></label> </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-12">
-        <div class="select_type" id="type_pattern">
-          <!--<div class="form-inline">
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="select_type" id="type_pattern">
+        <!--<div class="form-inline">
             <select id="group_singles" class="col-3">
               <option>0</option>
               <option>1</option>
@@ -70,38 +66,29 @@
               <option>4</option>
               <option>5</option>
             </select>
-          </div>-->
-          <label class="col-4"><i class="fas fa-user"></i><select id="group_singles" name="group_singles">
+          </div>--><label class="col-4"><i class="fas fa-user"></i><select id="group_singles" name="group_singles">
               <option>0</option>
               <option>1</option>
               <option>2</option>
               <option>3</option>
               <option>4</option>
               <option>5</option>
-            </select></label> 
-          <label class="col-4"><i class="fas fa-user-friends"></i><select id="group_doubles" name="group_doubles">
+            </select></label> <label class="col-4"><i class="fas fa-user-friends"></i><select id="group_doubles" name="group_doubles">
               <option>0</option>
               <option>1</option>
               <option>2</option>
               <option>3</option>
               <option>4</option>
               <option>5</option>
-            </select></label>
-          
-          
-        </div>
-      </div>
+            </select></label> </div>
     </div>
-    <div class="row">
-      <div class="col-12 space">
-        <button type="button" class="btn btn-primary btn-block lottery" onclick="Lottery();">ちゅうせん</button>
-      </div>
-    </div>
-    
-    <!-- doubles -->
-    <div class="doubles">
-    </div>
-    <!--
+  </div>
+  <div class="row">
+    <div class="col-12 space"> <button type="button" class="btn btn-primary btn-block lottery" onclick="Lottery();">ちゅうせん</button> </div>
+  </div>
+  <!-- doubles -->
+  <div class="doubles"> </div>
+  <!--
     <div class="row">
       <div class="col-4">
         <div class="row">
@@ -136,11 +123,9 @@
       </div>
     </div>
     -->
-    
-    <!-- singles -->
-    <div class="singles">
-    </div>
-    <!--
+  <!-- singles -->
+  <div class="singles"> </div>
+  <!--
     <div class="row">
        <div class="col-4">
         <div class="row">
@@ -165,12 +150,12 @@
       </div>
     </div>
     -->
-    <!-- group -->
-    <!-- coach -->
-    <div class="group">
-      <div class="group_doubles"></div>
-      <div class="group_singles"></div>
-    </div>
+  <!-- group -->
+  <!-- coach -->
+  <div class="group">
+    <div class="group_doubles"></div>
+    <div class="group_singles"></div>
   </div>
+</div>
 </body>
 </html>
