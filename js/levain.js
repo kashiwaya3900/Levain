@@ -306,8 +306,17 @@ function Lottery() {
     $('div.group_doubles').html(doublesStr);
     $('div.group_singles').html(singlesStr);
   }
+  
+  //ボタンの位置取得
+  var $e = $('#lottery');
+  var x1 = $e.offset().top;
+  
+  //画面スクロール
+  $("html,body").animate({scrollTop:x1});
 
 }
+
+
 
 /**
  * 配列のシャッフル処理
