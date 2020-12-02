@@ -289,6 +289,7 @@ function Lottery() {
     
     var singlesStr = "";
     var doublesStr = "";
+    var reserveStr = "";
     
     var member_count = 0;
     var order = "";
@@ -303,8 +304,20 @@ function Lottery() {
       member_count = member_count + 2;
     }
     
+    //ほけつ
+    //メンバが余っている場合
+    if(member_count < shuffle_list.length){
+      //ほけつメンバ数
+      var reserve_count = shuffle_list.length - member_count;
+      for (let l=0; l<reserve_count; l++){
+        reserveStr = reserveStr + ResultCreateTeamReserve(shuffle_list[member_count][1]);
+        member_count = member_count + 1;
+      }
+    }
+    
     $('div.group_doubles').html(doublesStr);
     $('div.group_singles').html(singlesStr);
+    $('div.group_reserve').html(reserveStr);
   }
   
   //ボタンの位置取得
@@ -317,8 +330,6 @@ function Lottery() {
   
 
 }
-
-
 
 /**
  * 配列のシャッフル処理
@@ -563,9 +574,40 @@ function ResultCreateTeamDoubles(player1,player2, order){
   return doubles;
 }
 
+function ResultCreateTeamReserve(player1){
+  var doubles = "";
+  
+  //性別を取得
+  var gender1;
+  
+   gender1 = memMap.get(player1) == '0' ? "result_member_male" : "result_member_female";
+  
+  doubles = '<div class="row">'
+  + '<div class="col-3  align-self-center">'
+  + '<label class="vs">'
+  + 'ほけつ'
+  + '</label>'
+  + '</div>'
+  + '<div class="col-9">'
+  + '<div class="col-12">'
+  + '<div class="centering">'
+  + '<label class="'
+  + gender1
+  + '">'
+  + player1
+  + '</label>'
+  + '</div>'
+  + '</div>'
+  + '</div>'
+  + '</div>';
+  
+  return doubles;
+}
+
 function ResultClear(){
   
   //コーチエリア
   $('div.group_doubles').html("");
   $('div.group_singles').html("");
+  $('div.group_reserve').html("");
 }
