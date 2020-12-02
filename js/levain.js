@@ -98,6 +98,8 @@ function Lottery() {
   //選択メンバーリスト
   var select_member = [];
   
+  onclickPdf();
+  
   var elements = document.getElementsByName("part");
   for (let i=0; i<elements.length; i++){
     if (elements[i].checked){
@@ -107,7 +109,6 @@ function Lottery() {
   }
   
   var radioVal = $("input[name='type']:checked").val();
-  
   if(radioVal == "singles") {
     //シングルス
     //2人以上選択していないとシングルスは不可
@@ -120,6 +121,7 @@ function Lottery() {
     var shuffle_list = ShuffleList(select_member);
     //組み合わせパターン作成
     var round_robin_list = CreateRoundRobin(shuffle_list);
+    
     
     //並び替え
     
@@ -313,6 +315,8 @@ function Lottery() {
   
   //画面スクロール
   $("html,body").animate({scrollTop:x1});
+  
+  
 
 }
 
