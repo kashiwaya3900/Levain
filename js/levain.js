@@ -98,8 +98,6 @@ function Lottery() {
   //選択メンバーリスト
   var select_member = [];
   
-  onclickPdf();
-  
   var elements = document.getElementsByName("part");
   for (let i=0; i<elements.length; i++){
     if (elements[i].checked){
