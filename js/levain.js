@@ -116,7 +116,7 @@ function Lottery() {
     }
     
     //シャッフル
-    var shuffle_list = CreateShuffleList(select_member,false);
+    var shuffle_list = CreateShuffleList(select_member);
     
     //メンバ数が奇数の場合は休みの要素を先頭に追加する
     if((shuffle_list.length % 2 ) != 0 ) {
@@ -142,14 +142,34 @@ function Lottery() {
       return;
     }
     
-    //偶数選択していないとNG
-    if((select_member.length % 2 ) != 0 ) {
-      alert("人数は偶数にしてほしいですぅ・・・");
-      return;
-    }
-    
     //シャッフル
-    var shuffle_list = CreateShuffleList(select_member,true);
+    var shuffle_list = CreateShuffleList(select_member);
+    
+    
+    //メンバ数が奇数の場合と偶数の場合で処理異なる
+    if((shuffle_list.length % 2 ) != 0 ) {
+      //奇数
+      var temp_list = shuffle_list.concat(shuffle_list);
+      var pair = temp_list.length/2;
+      var mem_count = 0;
+      var doubles_list = [];
+      for(i=0;i<pair;i++){
+        doubles_list.push(temp_list[mem_count] + ";" + temp_list[mem_count+1]);
+        mem_count = mem_count + 2;
+      }
+      
+      shuffle_list = doubles_list;
+    }else{
+      //偶数
+      var pair = shuffle_list.length/2;
+      var mem_count = 0;
+      var doubles_list = [];
+      for(i=0;i<pair;i++){
+        doubles_list.push(newList[mem_count] + ";" + newList[mem_count+1]);
+        mem_count = mem_count + 2;
+      }
+      shuffle_list = doubles_list;
+    }
     
     //メンバ数が奇数の場合は休みの要素を先頭に追加する
     if((shuffle_list.length % 2 ) != 0 ) {
@@ -164,6 +184,11 @@ function Lottery() {
     for (let k=0; k<round_robin_list.length; k++){
       var west = round_robin_list[k][0].split(";");
       var east = round_robin_list[k][1].split(";");
+      
+      //自分と対戦しないようにする
+      if(west[0] == east[0] || west[0] == east[1] || west[1] == east[0] || west[1] == east[1]){
+        continue;
+      }
       doublesStr = doublesStr + ResultCreateDoubles(west[0],west[1],east[0],east[1]);
     }
     
@@ -190,7 +215,11 @@ function Lottery() {
       return;
     }
     //シャッフル
-    var shuffle_list = CreateShuffleList(select_member,false);
+    var shuffle_list = CreateShuffleList(select_member);
+    
+    //奇数の場合は連結する
+    
+    
     
     var singlesStr = "";
     var doublesStr = "";
@@ -232,7 +261,7 @@ function Lottery() {
       return;
     }
     //シャッフル
-    var shuffle_list = CreateShuffleList(select_member,false);
+    var shuffle_list = CreateShuffleList(select_member);
     
     var singlesStr = "";
     var doublesStr = "";
@@ -281,7 +310,7 @@ function Lottery() {
 /**
  * 配列のシャッフル処理
  */
-function CreateShuffleList(list,doubles) {
+function CreateShuffleList(list) {
   newList = [];
   
   selectMemMap = new Map();
@@ -295,20 +324,7 @@ function CreateShuffleList(list,doubles) {
     num = num + 1;
     list.splice(k, 1);
   }
-  
-  //ダブルスモード
-  if(doubles){
-    var pair = newList.length/2;
-    var mem_count = 0;
-    var doubles_list = [];
-    for(i=0;i<pair;i++){
-      doubles_list.push(newList[mem_count] + ";" + newList[mem_count+1]);
-      mem_count = mem_count + 2;
-    }
-    newList = doubles_list;
-  }
-  
-  
+
   return newList;
 }
 
@@ -317,7 +333,7 @@ function CreateShuffleList(list,doubles) {
  */
 function CreateRoundRobin(shuffle_list){
   console.log("CreateRoundRobin");
-
+  
   var members = shuffle_list.length;
 
   var round_robin=[];
