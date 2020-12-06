@@ -111,143 +111,86 @@ function Lottery() {
     //シングルス
     //2人以上選択していないとシングルスは不可
     if(select_member.length < 2){
-      alert("2人以上選択してね");
+      alert("2人以上選択してほしいですぅ・・・");
       return;
     }
     
     //シャッフル
-    var shuffle_list = ShuffleList(select_member);
+    var shuffle_list = CreateShuffleList(select_member,false);
+    
+    //メンバ数が奇数の場合は休みの要素を先頭に追加する
+    if((shuffle_list.length % 2 ) != 0 ) {
+      //奇数の場合
+      shuffle_list.unshift("休み");
+    }
+    
     //組み合わせパターン作成
     var round_robin_list = CreateRoundRobin(shuffle_list);
     
-    
-    //並び替え
-    
-    var loop_count = round_robin_list.length;
-    var success_list = [];
-    var next_num = 1;
-    var beforePlayer1 = "";
-    var beforePlayer2 = "";
-    
-    for (let i=0; i<loop_count; i++){
-      
-      //左側リスト
-      for (let j=0; j<round_robin_list.length; j++){
-        var list_num = round_robin_list[j][0];
-        var player1 = round_robin_list[j][1];
-        var player2 = round_robin_list[j][2];
-        
-        var first_success = false;
-        
-        if(player1 == next_num){
-          //処理済かどうか
-          if(success_list.indexOf(list_num) < 0){
-            //未処理
-            if((player1 != beforePlayer1 && player1 != beforePlayer2) && (player2 != beforePlayer1 && player2 != beforePlayer2)) {
-              //直前に試合していない
-              
-              //結果リストにつめる
-              
-              //処理済リストにつめる
-              success_list.push(list_num);
-              
-              first_success = true;
-              
-              //次の優先プレイヤーを決める
-              if(player2 + 1 > selectMemMap.size ){
-                if(player1 == 1 || player2 == 1){
-                  next_num = 2;
-                }else{
-                  next_num = 1;
-                }
-              }else {
-                //その他はplayer2 + 1
-                next_num = player2 + 1;
-              }
-              
-              beforePlayer1 = player1;
-              beforePlayer2 = player2;
-              console.log(next_num);
-              console.log(player1);
-              console.log(player2);
-              
-              break;
-            }
-          }
-        }
-      }
-      
-      //左側リストで選べない場合
-      if(!first_success){
-        for (let k=0; k<round_robin_list.length; k++){
-          var list_num = round_robin_list[k][0];
-          var player1 = round_robin_list[k][1];
-          var player2 = round_robin_list[k][2];
-          
-          if(player2 == next_num){
-          
-            //処理済かどうか
-            if(success_list.indexOf(list_num) < 0){
-              //未処理
-              if((player1 != beforePlayer1 && player1 != beforePlayer2) && (player2 != beforePlayer1 && player2 != beforePlayer2)) {
-                success_list.push(list_num);
-                
-                //次の優先プレイヤーを決める
-                if(player2 + 1 > selectMemMap.size ){
-                  //最大値を超える場合は1
-                  next_num = 1;
-                }else {
-                  //その他はplayer2 + 1
-                  next_num = player2 + 1;
-                }
-                
-                beforePlayer1 = player1;
-                beforePlayer2 = player2;
-                
-                console.log(next_num);
-                console.log(player1);
-                console.log(player2);
-                break;
-              }
-            }
-          }
-        }      
-      }
-
-      
-      
-      //処理済かどうか？
-      
-      
+    var singlesStr = "";
+    for (let i=0; i<round_robin_list.length; i++){
+      singlesStr = singlesStr + ResultCreateSingles(round_robin_list[i][0],round_robin_list[i][1]);
     }
+    
+    $('div.singles').html(singlesStr);
     
   }else if(radioVal == "doubles"){
     //ダブルス
-    //4人以上選択していないとシングルスは不可
-     if(select_member.length < 4){
-      alert("4人以上選択してね");
+    //4人以上選択していないとダブルスは不可
+    if(select_member.length < 4){
+      alert("4人以上選択してほしいですぅ・・・");
       return;
     }
+    
+    //偶数選択していないとNG
+    if((select_member.length % 2 ) != 0 ) {
+      alert("人数は偶数にしてほしいですぅ・・・");
+      return;
+    }
+    
     //シャッフル
-    var shuffle_list = ShuffleList(select_member);
+    var shuffle_list = CreateShuffleList(select_member,true);
+    
+    //メンバ数が奇数の場合は休みの要素を先頭に追加する
+    if((shuffle_list.length % 2 ) != 0 ) {
+      //奇数の場合
+      shuffle_list.unshift("休み");
+    }
+    
+    //組み合わせパターン作成
+    var round_robin_list = CreateRoundRobin(shuffle_list);
+    
+    var doublesStr = "";
+    for (let k=0; k<round_robin_list.length; k++){
+      var west = round_robin_list[k][0].split(";");
+      var east = round_robin_list[k][1].split(";");
+      doublesStr = doublesStr + ResultCreateDoubles(west[0],west[1],east[0],east[1]);
+    }
+    
+    $('div.doubles').html(doublesStr);
+    
   }else if(radioVal == "group"){
     //団体戦
     //シングルスの数取得
     var singles_count = $('[name=group_singles]').val();
-    
     //ダブルスの数取得
     var doubles_count = $('[name=group_doubles]').val();
+    
+    if(singles_count == 0 && doubles_count == 0){
+      alert("しんぐるすかだぶるすの人数がほしいですぅ・・・");
+      return;
+    }
     
     //必要な人数の計算
     var minMember = ((singles_count * 1) + (doubles_count * 2)) * 2
     
     //必要な人数以上選択しているか
     if(select_member.length < minMember){
-      alert(minMember +  "人以上選択してね");
+      alert(minMember +  "人以上選択してほしいですぅ・・・");
       return;
     }
     //シャッフル
-    var shuffle_list = ShuffleList(select_member);
+    var shuffle_list = CreateShuffleList(select_member,false);
     
     var singlesStr = "";
     var doublesStr = "";
@@ -256,11 +199,11 @@ function Lottery() {
     var order = "";
     
     for (let j=0; j<singles_count; j++){
-      singlesStr = singlesStr + ResultCreateSingles(shuffle_list[member_count][1],shuffle_list[member_count+1][1]);
+      singlesStr = singlesStr + ResultCreateSingles(shuffle_list[member_count],shuffle_list[member_count+1]);
       member_count = member_count + 2;
     }
     for (let k=0; k<doubles_count; k++){
-      doublesStr = doublesStr + ResultCreateDoubles(shuffle_list[member_count][1],shuffle_list[member_count + 1][1],shuffle_list[member_count + 2][1],shuffle_list[member_count + 3][1]);
+      doublesStr = doublesStr + ResultCreateDoubles(shuffle_list[member_count],shuffle_list[member_count + 1],shuffle_list[member_count + 2],shuffle_list[member_count + 3]);
       member_count = member_count + 4;
     }
     
@@ -272,20 +215,24 @@ function Lottery() {
     
     //シングルスの数取得
     var singles_count = $('[name=group_singles]').val();
-    
     //ダブルスの数取得
     var doubles_count = $('[name=group_doubles]').val();
+    
+    if(singles_count == 0 && doubles_count == 0){
+      alert("しんぐるすかだぶるすの人数がほしいですぅ・・・");
+      return;
+    }
     
     //必要な人数の計算
     var minMember = (singles_count * 1) + (doubles_count * 2)
     
     //必要な人数以上選択しているか
     if(select_member.length < minMember){
-      alert(minMember +  "人以上選択してね");
+      alert(minMember +  "人以上選択してほしいですぅ・・・");
       return;
     }
     //シャッフル
-    var shuffle_list = ShuffleList(select_member);
+    var shuffle_list = CreateShuffleList(select_member,false);
     
     var singlesStr = "";
     var doublesStr = "";
@@ -295,12 +242,12 @@ function Lottery() {
     var order = "";
     for (let j=0; j<singles_count; j++){
       order = "S" + String(singles_count-j);
-      singlesStr = singlesStr + ResultCreateTeamSingles(shuffle_list[member_count][1],order);
+      singlesStr = singlesStr + ResultCreateTeamSingles(shuffle_list[member_count],order);
       member_count = member_count + 1;
     }
     for (let k=0; k<doubles_count; k++){
       order = "D" + String(doubles_count-k);
-      doublesStr = doublesStr + ResultCreateTeamDoubles(shuffle_list[member_count][1],shuffle_list[member_count + 1][1],order);
+      doublesStr = doublesStr + ResultCreateTeamDoubles(shuffle_list[member_count],shuffle_list[member_count + 1],order);
       member_count = member_count + 2;
     }
     
@@ -310,7 +257,7 @@ function Lottery() {
       //ほけつメンバ数
       var reserve_count = shuffle_list.length - member_count;
       for (let l=0; l<reserve_count; l++){
-        reserveStr = reserveStr + ResultCreateTeamReserve(shuffle_list[member_count][1]);
+        reserveStr = reserveStr + ResultCreateTeamReserve(shuffle_list[member_count]);
         member_count = member_count + 1;
       }
     }
@@ -334,7 +281,7 @@ function Lottery() {
 /**
  * 配列のシャッフル処理
  */
-function ShuffleList(list) {
+function CreateShuffleList(list,doubles) {
   newList = [];
   
   selectMemMap = new Map();
@@ -343,11 +290,24 @@ function ShuffleList(list) {
     n = list.length;
     k = Math.floor(Math.random() * n);
 
-    newList.push([num, list[k]]);
+    newList.push(list[k]);
     selectMemMap.set(num,list[k]);
     num = num + 1;
     list.splice(k, 1);
   }
+  
+  //ダブルスモード
+  if(doubles){
+    var pair = newList.length/2;
+    var mem_count = 0;
+    var doubles_list = [];
+    for(i=0;i<pair;i++){
+      doubles_list.push(newList[mem_count] + ";" + newList[mem_count+1]);
+      mem_count = mem_count + 2;
+    }
+    newList = doubles_list;
+  }
+  
   
   return newList;
 }
@@ -355,38 +315,49 @@ function ShuffleList(list) {
 /**
  * 総当たり作成処理
  */
-function CreateRoundRobin(list){
-  let m1 = list.concat();
-  let m2 = list.concat();
+function CreateRoundRobin(shuffle_list){
+  console.log("CreateRoundRobin");
+
+  var members = shuffle_list.length;
+
+  var round_robin=[];
+  var n = members;
+  var w = 1;
+  var x=[];
+  var y=[];
   
-  var round_robin = [];
-  var num = 1;
+  for(i = 0; i < members;i++ ){
+    if (i % 2 == 0) {
+      y.push(shuffle_list[i]);
+    }else {
+      x.push(shuffle_list[i]);
+    }
+  }
+
+  for(i = 0; i < x.length;i++ ){
+    if(x[i] != "休み" &&  y[i] != "休み"){
+      round_robin.push([x[i], y[i]]);
+    }
+  }
   
-  for (let i=0; i<m1.length; i++){
-    m2.shift();
-    for (let j=0; j<m2.length; j++){
-        console.log(m1[i] + ' vs ' + m2[j]);
-        round_robin.push([num,m1[i][0],m2[j][0]]);
-        num = num + 1;
+  for(j = 2; j < n; j++ ){
+    
+    x.push(y[x.length-1]);
+    y.unshift(x[1]);
+    x.splice(1, 1);
+    y.pop();
+    
+    for(k = 0; k < x.length;k++ ){
+      if(x[k] != "休み" &&  y[k] != "休み"){
+        round_robin.push([x[k], y[k]]);
+      }
     }
   }
 
   return round_robin;
 }
 
-/**
- * 試合順のソート(singles)
- */
-function RoundRobinSinglesSort(round_robin_list,offset,player1,player2,beforePlayer1,beforePlayer2,success_list) {
-  
-}
 
-/**
- * 試合順のソート(doubles)
- */
-function RoundRobinDoublesSort(list) {
-  
-}
 
 
 function ResultCreateSingles(player1,player2){
@@ -605,8 +576,10 @@ function ResultCreateTeamReserve(player1){
 }
 
 function ResultClear(){
+  //
+  $('div.singles').html("");
+  $('div.doubles').html("");
   
-  //コーチエリア
   $('div.group_doubles').html("");
   $('div.group_singles').html("");
   $('div.group_reserve').html("");
