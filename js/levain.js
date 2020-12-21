@@ -1,5 +1,6 @@
 var memMap;
 var selectMemMap;
+var isMusicPlay;
 
 Init();
 /**
@@ -7,7 +8,7 @@ Init();
  */
 function Init() {
   console.log('Init');
-  
+  isMusicPlay = true;
   var url = "data/member.json";
   
   $.getJSON(url, (data) => {
@@ -23,7 +24,13 @@ function Init() {
       }else{
         $female_list.append(MemberLabelCreate(list[i].name));
       }
-      memMap.set(list[i].name, list[i].gender);
+      
+      var memInfo = new Object();
+      memInfo.name = list[i].name;
+      memInfo.age = list[i].age;
+      memInfo.gender = list[i].gender;
+      memInfo.birthday = list[i].birthday;
+      memMap.set(list[i].name, memInfo);
     }
   });
 }
@@ -79,10 +86,15 @@ function DisChecked(){
 function TypeSelected(){
   console.log('TypeSelected');
   var radioVal = $("input[name='type']:checked").val();
-  if(radioVal == "singles" || radioVal == "doubles") {
-    $('#type_pattern').hide('slow');
+  if(radioVal == "singles") {
+    $('#doubles_pattern').hide('slow');
+    $('#group_pattern').hide('slow');
+  }else if(radioVal == "doubles") {
+    $('#doubles_pattern').show('slow');
+    $('#group_pattern').hide('slow');
   }else{
-    $('#type_pattern').show('slow');
+    $('#doubles_pattern').hide('slow');
+    $('#group_pattern').show('slow');
   }
 }
 
@@ -97,7 +109,6 @@ function Lottery() {
   
   //選択メンバーリスト
   var select_member = [];
-  
   var elements = document.getElementsByName("part");
   for (let i=0; i<elements.length; i++){
     if (elements[i].checked){
@@ -106,12 +117,14 @@ function Lottery() {
     }
   }
   
+  //抽選方法を取得する
   var radioVal = $("input[name='type']:checked").val();
+  
   if(radioVal == "singles") {
     //シングルス
     //2人以上選択していないとシングルスは不可
     if(select_member.length < 2){
-      alert("2人以上選択してほしいですぅ・・・");
+      OpenModal(ERROR,MESSAGE_SINGLES_MEM_LACK);
       return;
     }
     
@@ -121,7 +134,7 @@ function Lottery() {
     //メンバ数が奇数の場合は休みの要素を先頭に追加する
     if((shuffle_list.length % 2 ) != 0 ) {
       //奇数の場合
-      shuffle_list.unshift("休み");
+      shuffle_list.unshift(REST);
     }
     
     //組み合わせパターン作成
@@ -138,8 +151,14 @@ function Lottery() {
     //ダブルス
     //4人以上選択していないとダブルスは不可
     if(select_member.length < 4){
-      alert("4人以上選択してほしいですぅ・・・");
+      OpenModal(ERROR,MESSAGE_DOUBLES_MEM_LACK);
       return;
+    }
+    
+    //総当たりか否か
+    var full = false;
+    if($('[name="doubles_pattern"]').prop('checked')){
+      full = true;
     }
     
     //シャッフル
@@ -174,13 +193,18 @@ function Lottery() {
     //メンバ数が奇数の場合は休みの要素を先頭に追加する
     if((shuffle_list.length % 2 ) != 0 ) {
       //奇数の場合
-      shuffle_list.unshift("休み");
+      shuffle_list.unshift(REST);
     }
     
     //組み合わせパターン作成
     var round_robin_list = CreateRoundRobin(shuffle_list);
     
     var doublesStr = "";
+    
+    //最初のプレイヤー
+    var firstPlayer = round_robin_list[0][0];
+    var first = true;
+    
     for (let k=0; k<round_robin_list.length; k++){
       var west = round_robin_list[k][0].split(";");
       var east = round_robin_list[k][1].split(";");
@@ -190,6 +214,16 @@ function Lottery() {
         continue;
       }
       doublesStr = doublesStr + ResultCreateDoubles(west[0],west[1],east[0],east[1]);
+      
+      //総当たりでない場合は全員が1回試合したら終了
+      if(!full){
+        if(!first){
+          if(firstPlayer == round_robin_list[k][0] || firstPlayer == round_robin_list[k][1]){
+            break;
+          }
+        }
+      }
+      first = false;
     }
     
     $('div.doubles').html(doublesStr);
@@ -202,7 +236,7 @@ function Lottery() {
     var doubles_count = $('[name=group_doubles]').val();
     
     if(singles_count == 0 && doubles_count == 0){
-      alert("しんぐるすかだぶるすの人数がほしいですぅ・・・");
+      OpenModal(ERROR,MESSAGE_GROUP_MEM_ZERO);
       return;
     }
     
@@ -211,15 +245,11 @@ function Lottery() {
     
     //必要な人数以上選択しているか
     if(select_member.length < minMember){
-      alert(minMember +  "人以上選択してほしいですぅ・・・");
+      OpenModal(ERROR,minMember +  MESSAGE_GROUP_MEM_LACK);
       return;
     }
     //シャッフル
     var shuffle_list = CreateShuffleList(select_member);
-    
-    //奇数の場合は連結する
-    
-    
     
     var singlesStr = "";
     var doublesStr = "";
@@ -248,7 +278,7 @@ function Lottery() {
     var doubles_count = $('[name=group_doubles]').val();
     
     if(singles_count == 0 && doubles_count == 0){
-      alert("しんぐるすかだぶるすの人数がほしいですぅ・・・");
+      OpenModal(ERROR,MESSAGE_GROUP_MEM_ZERO);
       return;
     }
     
@@ -257,7 +287,7 @@ function Lottery() {
     
     //必要な人数以上選択しているか
     if(select_member.length < minMember){
-      alert(minMember +  "人以上選択してほしいですぅ・・・");
+      OpenModal(ERROR,minMember + MESSAGE_GROUP_MEM_LACK);
       return;
     }
     //シャッフル
@@ -296,15 +326,48 @@ function Lottery() {
     $('div.group_reserve').html(reserveStr);
   }
   
-  //ボタンの位置取得
+  //ボタンの位置取得して画面スクロール
   var $e = $('#lottery');
   var x1 = $e.offset().top;
-  
-  //画面スクロール
   $("html,body").animate({scrollTop:x1});
   
-  
+  //誕生日チェック
+  //現在日時取得
+  var nowDate = getNowDateWithString();
+  console.log(nowDate);
+  var isHappy = false;
+  //メンバーMap内チェック
+  if(isMusicPlay){
+    //初回だけ再生
+    memMap.forEach(function (value, key) {
+      if(value.birthday == nowDate){
+        isHappy = true;
+      }
+    });
+    
+    if(isHappy){
+      const bgm1 = document.querySelector("#hb");
+      if(!bgm1.paused ){
+        bgm1.pause();
+      }else{
+        bgm1.play();
+        OpenModal(HAPPY_BIRTHDAY,MESSAGE_HAPPY_BIRTHDAY);
+      }
+    }
+  }
 
+}
+
+/**
+ * 閉じるボタン
+ */
+function PushClose(){
+  console.log('PushClose');
+  const bgm1 = document.querySelector("#hb");
+  if(!bgm1.paused ){
+    bgm1.pause();
+    isMusicPlay = false;
+  }
 }
 
 /**
@@ -351,7 +414,7 @@ function CreateRoundRobin(shuffle_list){
   }
 
   for(i = 0; i < x.length;i++ ){
-    if(x[i] != "休み" &&  y[i] != "休み"){
+    if(x[i] != REST &&  y[i] != REST){
       round_robin.push([x[i], y[i]]);
     }
   }
@@ -364,7 +427,7 @@ function CreateRoundRobin(shuffle_list){
     y.pop();
     
     for(k = 0; k < x.length;k++ ){
-      if(x[k] != "休み" &&  y[k] != "休み"){
+      if(x[k] != REST &&  y[k] != REST){
         round_robin.push([x[k], y[k]]);
       }
     }
@@ -383,8 +446,8 @@ function ResultCreateSingles(player1,player2){
   var gender1;
   var gender2;
   
-   gender1 = memMap.get(player1) == '0' ? "result_member_male" : "result_member_female";
-   gender2 = memMap.get(player2) == '0' ? "result_member_male" : "result_member_female";
+   gender1 = memMap.get(player1).gender == '0' ? "result_member_male" : "result_member_female";
+   gender2 = memMap.get(player2).gender == '0' ? "result_member_male" : "result_member_female";
 
   
   singles = '<div class="row">'
@@ -417,7 +480,8 @@ function ResultCreateSingles(player1,player2){
   + '</div>'
   + '</div>'
   + '</div>'
-  + '</div>';
+  + '</div>'
+  + '<hr class="line" width="100%" color="#7EB634" noshade>';
   
   return singles;
 }
@@ -431,11 +495,10 @@ function ResultCreateDoubles(player1,player2,player3,player4){
   var gender3;
   var gender4;
   
-   gender1 = memMap.get(player1) == '0' ? "result_member_male" : "result_member_female";
-   gender2 = memMap.get(player2) == '0' ? "result_member_male" : "result_member_female";
-   gender3 = memMap.get(player3) == '0' ? "result_member_male" : "result_member_female";
-   gender4 = memMap.get(player4) == '0' ? "result_member_male" : "result_member_female";
-
+   gender1 = memMap.get(player1).gender == '0' ? "result_member_male" : "result_member_female";
+   gender2 = memMap.get(player2).gender == '0' ? "result_member_male" : "result_member_female";
+   gender3 = memMap.get(player3).gender == '0' ? "result_member_male" : "result_member_female";
+   gender4 = memMap.get(player4).gender == '0' ? "result_member_male" : "result_member_female";
   
   doubles = '<div class="row">'
   + '<div class="col-4">'
@@ -485,7 +548,8 @@ function ResultCreateDoubles(player1,player2,player3,player4){
   + '</div>'
   + '</div>'
   + '</div>'
-  + '</div>';
+  + '</div>'
+  + '<hr class="line" width="100%" color="#7EB634" noshade>';
   
   return doubles;
 }
@@ -496,7 +560,7 @@ function ResultCreateTeamSingles(player1,order){
   //性別を取得
   var gender1;
   
-   gender1 = memMap.get(player1) == '0' ? "result_member_male" : "result_member_female";
+   gender1 = memMap.get(player1).gender == '0' ? "result_member_male" : "result_member_female";
   
   singles = '<div class="row">'
   + '<div class="col-3  align-self-center">'
@@ -515,7 +579,8 @@ function ResultCreateTeamSingles(player1,order){
   + '</div>'
   + '</div>'
   + '</div>'
-  + '</div>';
+  + '</div>'
+  + '<hr class="line" width="100%" color="#7EB634" noshade>';
   
   return singles;
 }
@@ -527,8 +592,8 @@ function ResultCreateTeamDoubles(player1,player2, order){
   var gender1;
   var gender2;
   
-   gender1 = memMap.get(player1) == '0' ? "result_member_male" : "result_member_female";
-   gender2 = memMap.get(player2) == '0' ? "result_member_male" : "result_member_female";
+   gender1 = memMap.get(player1).gender == '0' ? "result_member_male" : "result_member_female";
+   gender2 = memMap.get(player2).gender == '0' ? "result_member_male" : "result_member_female";
   
   doubles = '<div class="row">'
   + '<div class="col-3  align-self-center">'
@@ -556,7 +621,8 @@ function ResultCreateTeamDoubles(player1,player2, order){
   + '</div>'
   + '</div>'
   + '</div>'
-  + '</div>';
+  + '</div>'
+  + '<hr class="line" width="100%" color="#7EB634" noshade>';
   
   return doubles;
 }
@@ -567,12 +633,12 @@ function ResultCreateTeamReserve(player1){
   //性別を取得
   var gender1;
   
-   gender1 = memMap.get(player1) == '0' ? "result_member_male" : "result_member_female";
+   gender1 = memMap.get(player1).gender == '0' ? "result_member_male" : "result_member_female";
   
   doubles = '<div class="row">'
   + '<div class="col-3  align-self-center">'
   + '<label class="vs">'
-  + 'ほけつ'
+  + RESERVE
   + '</label>'
   + '</div>'
   + '<div class="col-9">'
@@ -586,7 +652,8 @@ function ResultCreateTeamReserve(player1){
   + '</div>'
   + '</div>'
   + '</div>'
-  + '</div>';
+  + '</div>'
+  + '<hr class="line" width="100%" color="#7EB634" noshade>';
   
   return doubles;
 }
@@ -600,3 +667,61 @@ function ResultClear(){
   $('div.group_singles').html("");
   $('div.group_reserve').html("");
 }
+
+$(function(){
+  $(".btn-gnavi").on("click", function(){
+    // ハンバーガーメニューの位置を設定
+    var rightVal = 0;
+    if($(this).hasClass("open")) {
+      // 位置を移動させメニューを開いた状態にする
+      rightVal = -300;
+      // メニューを開いたら次回クリック時は閉じた状態になるよう設定
+      $(this).removeClass("open");
+    } else {
+      // メニューを開いたら次回クリック時は閉じた状態になるよう設定
+      $(this).addClass("open");
+    }
+    $("#global-navi").stop().animate({
+      right: rightVal
+    }, 200);
+  });
+});
+
+
+function OpenModal(title,message){
+  $('.modal-title').text(title);
+  $('.modal-body').text(message);
+  $('#sampleModal').modal();
+
+}
+
+
+function getNowDateWithString(){
+  var dt = new Date();
+  //var y = dt.getFullYear();
+  var m = ("00" + (dt.getMonth()+1)).slice(-2);
+  var d = ("00" + dt.getDate()).slice(-2);
+  var result = m + "/" + d;
+  
+  return result;
+}
+
+function FallSnow(){
+      console.log(navigator.hardwareConcurrency);
+      $(document).snowfall({
+        flakeCount : 25,
+        minSize : 1,
+        maxSize : 3,
+        minSpeed : 1,
+        maxSpeed : 3,
+        round : true,
+        shadow : true,
+        image : "images/flake.png"
+        
+    });
+}
+
+$(document).ready(function(){
+    FallSnow();
+});
+

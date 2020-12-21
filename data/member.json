@@ -3,117 +3,146 @@
 		{
 			"name": "いしい",
 			"age": 30,
-			"gender": "0"
+			"gender": "0",
+			"birthday": "-"
 		},
 		{
 			"name": "むとう",
 			"age": 30,
-			"gender": "0"
+			"gender": "0",
+			"birthday": "-"
 		},
 		{
 			"name": "あさべ",
 			"age": 30,
-			"gender": "0"
+			"gender": "0",
+			"birthday": "12/22"
 		},
 		{
 			"name": "こやま",
 			"age": 30,
-			"gender": "0"
+			"gender": "0",
+			"birthday": "-"
 		},
 		{
 			"name": "すだ",
 			"age": 30,
-			"gender": "0"
+			"gender": "0",
+			"birthday": "-"
 		},
 		{
 			"name": "めぐろ",
 			"age": 30,
-			"gender": "0"
-		},
-		{
-			"name": "くどう",
-			"age": 30,
-			"gender": "0"
-		},
-		{
-			"name": "たなか",
-			"age": 30,
-			"gender": "0"
-		},
-		{
-			"name": "あいば",
-			"age": 30,
-			"gender": "0"
-		},
-		{
-			"name": "いしかわ",
-			"age": 30,
-			"gender": "0"
+			"gender": "0",
+			"birthday": "-"
 		},
 		{
 			"name": "さとう(た)",
 			"age": 30,
-			"gender": "0"
+			"gender": "0",
+			"birthday": "-"
+		},
+		{
+			"name": "たなか",
+			"age": 30,
+			"gender": "0",
+			"birthday": "-"
+		},
+		{
+			"name": "くどう",
+			"age": 30,
+			"gender": "0",
+			"birthday": "-"
+		},
+		{
+			"name": "あいば",
+			"age": 30,
+			"gender": "0",
+			"birthday": "-"
+		},
+		{
+			"name": "いしかわ",
+			"age": 30,
+			"gender": "0",
+			"birthday": "-"
 		},
 		{
 			"name": "まつだ",
 			"age": 30,
-			"gender": "0"
+			"gender": "0",
+			"birthday": "-"
 		},
 		{
 			"name": "げすとA",
 			"age": 30,
-			"gender": "0"
+			"gender": "0",
+			"birthday": "-"
 		},
 		{
 			"name": "げすとB",
 			"age": 30,
-			"gender": "0"
+			"gender": "0",
+			"birthday": "-"
 		},
 		{
 			"name": "のと",
 			"age": 30,
-			"gender": "1"
+			"gender": "1",
+			"birthday": "-"
 		},
 		{
 			"name": "すずき",
 			"age": 30,
-			"gender": "1"
+			"gender": "1",
+			"birthday": "-"
 		},
 		{
 			"name": "かしわや",
 			"age": 30,
-			"gender": "1"
+			"gender": "1",
+			"birthday": "10/22"
 		},
 		{
 			"name": "さとう(ま)",
 			"age": 30,
-			"gender": "1"
+			"gender": "1",
+			"birthday": "-"
 		},
 		{
 			"name": "ふじわら",
 			"age": 30,
-			"gender": "1"
+			"gender": "1",
+			"birthday": "-"
 		},
 		{
 			"name": "かみもと",
 			"age": 30,
-			"gender": "1"
+			"gender": "1",
+			"birthday": "-"
+		},
+		{
+			"name": "ほそかわ",
+			"age": 30,
+			"gender": "1",
+			"birthday": "-"
 		},
 		{
 			"name": "しまだ",
 			"age": 30,
-			"gender": "1"
+			"gender": "1",
+			"birthday": "-"
 		},
 		{
 			"name": "げすと1",
 			"age": 30,
-			"gender": "1"
+			"gender": "1",
+			"birthday": "-"
 		},
 		{
 			"name": "げすと2",
 			"age": 30,
-			"gender": "1"
+			"gender": "1",
+			"birthday": "-"
 		}
 	]
 }

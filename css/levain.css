@@ -2,6 +2,7 @@
 /* ヘッダメニュー用に下げる */
 body{
   margin-top: 20px;
+  font-family: "Nico Moji";
 }
 
 /* チェックボックスは非表示 */
@@ -134,7 +135,11 @@ li {
   border-color: #7EB634;
 }
 
-#type_pattern {
+#doubles_pattern {
+  display: block;
+}
+
+#group_pattern {
   display: none;
 }
 
@@ -246,3 +251,16 @@ li {
   display: block;
 }
 
+
+.line {
+  height: 3px;
+  background: #bbb;
+  background-image: -webkit-linear-gradient(left, #eee, #777, #eee);
+  background-image: -moz-linear-gradient(left, #eee, #777, #eee);
+  background-image: -ms-linear-gradient(left, #eee, #777, #eee);
+  background-image: -o-linear-gradient(left, #eee, #777, #eee);
+}
+
+.memimage{
+  width: 45%;
+}
