@@ -5,6 +5,11 @@ body{
   font-family: "Nico Moji";
 }
 
+/* Gif */
+#hbgif {
+  display: none;
+}
+
 /* チェックボックスは非表示 */
 input[type=checkbox] {
   display: none;

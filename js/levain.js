@@ -352,6 +352,7 @@ function Lottery() {
       }else{
         bgm1.play();
         OpenModal(HAPPY_BIRTHDAY,MESSAGE_HAPPY_BIRTHDAY);
+        $('#hbgif').show('slow');
       }
     }
   }
@@ -363,6 +364,7 @@ function Lottery() {
  */
 function PushClose(){
   console.log('PushClose');
+  $('#hbgif').hide('slow');
   const bgm1 = document.querySelector("#hb");
   if(!bgm1.paused ){
     bgm1.pause();
@@ -706,22 +708,16 @@ function getNowDateWithString(){
   return result;
 }
 
-function FallSnow(){
-      console.log(navigator.hardwareConcurrency);
-      $(document).snowfall({
-        flakeCount : 25,
-        minSize : 1,
-        maxSize : 3,
-        minSpeed : 1,
-        maxSpeed : 3,
-        round : true,
-        shadow : true,
-        image : "images/flake.png"
-        
-    });
-}
-
-$(document).ready(function(){
-    FallSnow();
+$(document).ready(function() {
+  $( 'body' ).flurry({
+    character: "❄",
+    height: 1000,
+    speed: 15000,
+    wind: 200,
+    variance: 100,
+    large: 25,
+    small: 10,
+    density: 100,
+    transparency: 0.4
+  });
 });
-
