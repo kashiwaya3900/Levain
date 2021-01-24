@@ -87,13 +87,10 @@ function TypeSelected(){
   console.log('TypeSelected');
   var radioVal = $("input[name='type']:checked").val();
   if(radioVal == "singles") {
-    $('#doubles_pattern').hide('slow');
     $('#group_pattern').hide('slow');
   }else if(radioVal == "doubles") {
-    $('#doubles_pattern').show('slow');
     $('#group_pattern').hide('slow');
   }else{
-    $('#doubles_pattern').hide('slow');
     $('#group_pattern').show('slow');
   }
 }
@@ -155,40 +152,8 @@ function Lottery() {
       return;
     }
     
-    //総当たりか否か
-    var full = false;
-    if($('[name="doubles_pattern"]').prop('checked')){
-      full = true;
-    }
-    
     //シャッフル
     var shuffle_list = CreateShuffleList(select_member);
-    
-    
-    //メンバ数が奇数の場合と偶数の場合で処理異なる
-    if((shuffle_list.length % 2 ) != 0 ) {
-      //奇数
-      var temp_list = shuffle_list.concat(shuffle_list);
-      var pair = temp_list.length/2;
-      var mem_count = 0;
-      var doubles_list = [];
-      for(i=0;i<pair;i++){
-        doubles_list.push(temp_list[mem_count] + ";" + temp_list[mem_count+1]);
-        mem_count = mem_count + 2;
-      }
-      
-      shuffle_list = doubles_list;
-    }else{
-      //偶数
-      var pair = shuffle_list.length/2;
-      var mem_count = 0;
-      var doubles_list = [];
-      for(i=0;i<pair;i++){
-        doubles_list.push(newList[mem_count] + ";" + newList[mem_count+1]);
-        mem_count = mem_count + 2;
-      }
-      shuffle_list = doubles_list;
-    }
     
     //メンバ数が奇数の場合は休みの要素を先頭に追加する
     if((shuffle_list.length % 2 ) != 0 ) {
@@ -199,31 +164,20 @@ function Lottery() {
     //組み合わせパターン作成
     var round_robin_list = CreateRoundRobin(shuffle_list);
     
+    //奇数の場合、先頭の値を末尾にも追加
+    if(round_robin_list.length % 2 != 0 ) {
+      round_robin_list.push(round_robin_list[0]);
+    }
+    
     var doublesStr = "";
     
-    //最初のプレイヤー
-    var firstPlayer = round_robin_list[0][0];
-    var first = true;
-    
-    for (let k=0; k<round_robin_list.length; k++){
-      var west = round_robin_list[k][0].split(";");
-      var east = round_robin_list[k][1].split(";");
-      
-      //自分と対戦しないようにする
-      if(west[0] == east[0] || west[0] == east[1] || west[1] == east[0] || west[1] == east[1]){
-        continue;
-      }
+    var count = 0;
+    while (count < round_robin_list.length) {
+      var west = round_robin_list[count];
+      var east = round_robin_list[count + 1];
       doublesStr = doublesStr + ResultCreateDoubles(west[0],west[1],east[0],east[1]);
-      
-      //総当たりでない場合は全員が1回試合したら終了
-      if(!full){
-        if(!first){
-          if(firstPlayer == round_robin_list[k][0] || firstPlayer == round_robin_list[k][1]){
-            break;
-          }
-        }
-      }
-      first = false;
+    
+      count = count + 2;
     }
     
     $('div.doubles').html(doublesStr);
