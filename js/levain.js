@@ -314,6 +314,16 @@ function Lottery() {
 }
 
 /**
+ * VSボタン選択
+ */
+function VSChecked(id,enable){
+  console.log('VSChecked');
+  
+  //自分自身の値を取得
+  console.log(enable);
+}
+
+/**
  * 閉じるボタン
  */
 function PushClose(){
@@ -398,6 +408,9 @@ function CreateRoundRobin(shuffle_list){
 function ResultCreateSingles(player1,player2){
   var singles = "";
   
+  //キー
+  var vsKey = player1 + player2;
+  
   //性別を取得
   var gender1;
   var gender2;
@@ -421,7 +434,13 @@ function ResultCreateSingles(player1,player2){
   + '</div>'
   + '</div>'
   + '<div class="col-4  align-self-center">'
-  + '<label class="vs">VS</label>'
+  + '<div class="vs-select">'
+  + '<label>'
+  + '<input type="checkbox" name="VS'
+  + '" value="" onClick="VSChecked(this.id,this.checked);"/>'
+  + '<span class="vs-label">VS</span>'
+  + '</label>'
+  + '</div>'
   + '</div>'
   + '<div class="col-4">'
   + '<div class="row">'
@@ -480,8 +499,15 @@ function ResultCreateDoubles(player1,player2,player3,player4){
   + '</div>'
   + '</div>'
   + '<div class="col-4  align-self-center">'
-  + '<label class="vs">VS</label>'
+  + '<div class="vs-select">'
+  + '<label>'
+  + '<input type="checkbox" name="VS'
+  + '" value="" onClick="VSChecked(this.id,this.checked);"/>'
+  + '<span class="vs-label">VS</span>'
+  + '</label>'
   + '</div>'
+  + '</div>'
+
   + '<div class="col-4">'
   + '<div class="row">'
   + '<div class="col-12">'
@@ -665,7 +691,7 @@ function getNowDateWithString(){
 $(document).ready(function() {
   $( 'body' ).flurry({
     character: "❄",
-    height: 1000,
+    height: 800,
     speed: 15000,
     wind: 200,
     variance: 100,

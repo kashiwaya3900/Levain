@@ -101,6 +101,14 @@ li {
   background-size: 15px 15px;
 }
 
+/* VSラベル */
+.vs-select input[type=checkbox]:checked + span {
+  background: #ff4646 no-repeat 7% center;
+  background-size: 15px 13px;
+}
+
+
+
 /* 全選択 */
 .all-select {
   width :100%;
@@ -236,22 +244,28 @@ li {
   display: block;
 }
 
+/* 全選択 */
+.vs-select {
+  width :100%;
+  text-align: center;
+}
+
 /* VSラベル */
-.vs {
+.vs-label {
   background-color: #7EB634;
   border-radius: 4px;
   font-weight: 700;
+  color: #ffffff;
   font-size: .85em;
   letter-spacing: 4px;
   text-decoration: none;
-  color: #FFFFFF;
   font-family: "Nico Moji";
   text-align: center;
+  width: 100px;
   padding: 5px 0;
   cursor: pointer;
   display: block;
 }
-
 
 .line {
   height: 3px;
