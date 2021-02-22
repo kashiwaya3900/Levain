@@ -98,6 +98,9 @@ function TypeSelected(){
 /**
  * 抽選押下時処理
  */
+ 
+ 
+ 
 function Lottery() {
   console.log('Lottery');
   
@@ -334,6 +337,24 @@ function PushClose(){
     bgm1.pause();
     isMusicPlay = false;
   }
+}
+
+/**
+ * YESボタン
+ */
+function PushYes(){
+  console.log('PushYes');
+  
+  return true;
+}
+
+/**
+ * NOボタン
+ */
+function PushNo(){
+  console.log('PushNo');
+  
+  return false;
 }
 
 /**
@@ -674,7 +695,6 @@ function OpenModal(title,message){
   $('.modal-title').text(title);
   $('.modal-body').text(message);
   $('#sampleModal').modal();
-
 }
 
 

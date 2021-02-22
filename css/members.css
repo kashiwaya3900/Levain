@@ -1,0 +1,42 @@
+
+/* ヘッダメニュー用に下げる */
+body{
+  margin-top: 20px;
+  font-family: "Nico Moji";
+}
+
+
+
+/* タイトル */
+h1 {
+  font-family: "Nico Moji";
+  text-align: center;
+  font-size: 2em;
+  color :#ffffff;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+/* メンバリスト(全体) */
+ul {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+/* メンバリスト(要素) */
+li {
+  list-style: none;
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.line {
+  height: 3px;
+  background: #bbb;
+  background-image: -webkit-linear-gradient(left, #eee, #777, #eee);
+  background-image: -moz-linear-gradient(left, #eee, #777, #eee);
+  background-image: -ms-linear-gradient(left, #eee, #777, #eee);
+  background-image: -o-linear-gradient(left, #eee, #777, #eee);
+}
