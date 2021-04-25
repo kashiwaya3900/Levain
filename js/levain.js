@@ -138,7 +138,7 @@ function Lottery() {
     }
     
     //組み合わせパターン作成
-    var round_robin_list = CreateRoundRobin(shuffle_list);
+    var round_robin_list = CreateRoundRobinSingles(shuffle_list);
     
     var singlesStr = "";
     for (let i=0; i<round_robin_list.length; i++){
@@ -165,54 +165,22 @@ function Lottery() {
     }
     
     //組み合わせパターン作成
-    var round_robin_list = CreateRoundRobin(shuffle_list);
+    var round_robin_list = CreateRoundRobinDoubles(shuffle_list);
     
-    var tmpList = [];
-    for (let i=0; i<round_robin_list.length; i++){
-      tmpList.push(round_robin_list[i][0] + ":" + round_robin_list[i][1]);
-    }
-    
-    var round_robin_list2 = CreateRoundRobin(tmpList);
-    
-    var tmpList2 = [];
     var doublesStr = "";
-    for (let i=0; i<round_robin_list2.length; i++){
-      var east = round_robin_list2[i][0].split(":");
-      var west = round_robin_list2[i][1].split(":");
-      var east1 = east[0];
-      var east2 = east[1];
-      var west1 = west[0];
-      var west2 = west[1];
+    var itemCount = 0;
+    var loopCount = Math.floor(round_robin_list.length/4);
+    
+    for (let j=0; j < loopCount; j++){
+      var east1 = round_robin_list[itemCount];
+      var east2 = round_robin_list[itemCount+1];
+      var west1 = round_robin_list[itemCount+2];
+      var west2 = round_robin_list[itemCount+3];
       
-      if(east1 == west1 || east1 == west2 || east2 == west1 || east2 == west2){
-        continue;
-      }
+      doublesStr = doublesStr + ResultCreateDoubles(east1,east2,west1,west2);
       
-      //tmpList2.push([east1,east2,west1,west2]);
-      doublesStr = doublesStr + ResultCreateDoubles(west[0],west[1],east[0],east[1]);
-    }    
-    
-    
-    
-    //奇数の場合、先頭の値を末尾にも追加
-    //if(round_robin_list.length % 2 != 0 ) {
-    //  round_robin_list.push(round_robin_list[0]);
-    //}
-    
-    //var doublesStr = "";
-    
-    for (let i=0; i<tmpList2.length; i++){
-      doublesStr = doublesStr + ResultCreateDoubles(west[0],west[1],east[0],east[1]);
+      itemCount = itemCount +4;
     }
-    
-    //var count = 0;
-    //while (count < round_robin_list.length) {
-    //  var west = round_robin_list[count];
-    //  var east = round_robin_list[count + 1];
-    //  doublesStr = doublesStr + ResultCreateDoubles(west[0],west[1],east[0],east[1]);
-    
-    //  count = count + 2;
-    //}
     
     $('div.doubles').html(doublesStr);
     
@@ -412,8 +380,8 @@ function CreateShuffleList(list) {
 /**
  * 総当たり作成処理
  */
-function CreateRoundRobin(shuffle_list){
-  console.log("CreateRoundRobin");
+function CreateRoundRobinSingles(shuffle_list){
+  console.log("CreateRoundRobinSingles");
   
   var members = shuffle_list.length;
 
@@ -447,6 +415,57 @@ function CreateRoundRobin(shuffle_list){
     for(k = 0; k < x.length;k++ ){
       if(x[k] != REST &&  y[k] != REST){
         round_robin.push([x[k], y[k]]);
+      }
+    }
+  }
+
+  return round_robin;
+}
+
+/**
+ * 総当たり作成処理
+ */
+function CreateRoundRobinDoubles(shuffle_list){
+  console.log("CreateRoundRobinDoubles");
+  
+  var members = shuffle_list.length;
+
+  var round_robin=[];
+  var n = members;
+  var w = 1;
+  var x=[];
+  var y=[];
+  
+  for(i = 0; i < members;i++ ){
+    if (i % 2 == 0) {
+      y.push(shuffle_list[i]);
+    }else {
+      x.push(shuffle_list[i]);
+    }
+  }
+
+  for(i = 0; i < x.length;i++ ){
+    if(x[i] != REST){
+      round_robin.push(x[i]);
+    }
+    if(y[i] != REST){
+      round_robin.push(y[i]);
+    }
+  }
+  
+  for(j = 2; j < n; j++ ){
+    
+    x.push(y[x.length-1]);
+    y.unshift(x[1]);
+    x.splice(1, 1);
+    y.pop();
+    
+    for(k = 0; k < x.length;k++ ){
+      if(x[k] != REST){
+        round_robin.push(x[k]);
+      }
+      if(y[k] != REST){
+        round_robin.push(y[k]);
       }
     }
   }
@@ -739,6 +758,33 @@ function getNowDateWithString(){
   return result;
 }
 
+window.addEventListener('DOMContentLoaded', () => {
+  // コンテナを指定
+  const section = document.querySelector('.cherry-blossom-container');
+
+  // 花びらを生成する関数
+  const createPetal = () => {
+    const petalEl = document.createElement('span');
+    petalEl.className = 'petal';
+    const minSize = 10;
+    const maxSize = 15;
+    const size = Math.random() * (maxSize + 1 - minSize) + minSize;
+    petalEl.style.width = `${size}px`;
+    petalEl.style.height = `${size}px`;
+    petalEl.style.left = Math.random() * innerWidth + 'px';
+    section.appendChild(petalEl);
+
+    // 一定時間が経てば花びらを消す
+    setTimeout(() => {
+      petalEl.remove();
+    }, 10000);
+  }
+
+  // 花びらを生成する間隔をミリ秒で指定
+  setInterval(createPetal, 300);
+});
+
+/* 雪を降らせる場合は本メソッドを有効化する
 $(document).ready(function() {
   $( 'body' ).flurry({
     character: "❄",
@@ -752,3 +798,4 @@ $(document).ready(function() {
     transparency: 0.4
   });
 });
+*/

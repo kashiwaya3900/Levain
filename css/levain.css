@@ -107,6 +107,21 @@ li {
   background-size: 15px 13px;
 }
 
+.vs {
+  background-color: #7EB634;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: .85em;
+  letter-spacing: 4px;
+  text-decoration: none;
+  color: #FFFFFF;
+  font-family: "Nico Moji";
+  text-align: center;
+  padding: 5px 0;
+  cursor: pointer;
+  display: block;
+}
+
 
 
 /* ‘S‘I‘ð */
