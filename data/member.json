@@ -43,11 +43,11 @@
 			"image": "noimage.jpg"
 		},
 		{
-			"name": "さとう(た)",
+			"name": "あいば",
 			"age": 30,
 			"gender": "0",
 			"birthday": "-",
-			"image": "satot.jpg"
+			"image": "aiba.jpg"
 		},
 		{
 			"name": "めぐろ",
@@ -57,18 +57,25 @@
 			"image": "noimage.jpg"
 		},
 		{
-			"name": "くどう",
-			"age": 30,
+			"name": "とりや",
+			"age": 34,
 			"gender": "0",
 			"birthday": "-",
 			"image": "noimage.jpg"
 		},
 		{
-			"name": "あいば",
+			"name": "さとう(た)",
 			"age": 30,
 			"gender": "0",
 			"birthday": "-",
-			"image": "aiba.jpg"
+			"image": "satot.jpg"
+		},
+		{
+			"name": "くどう",
+			"age": 30,
+			"gender": "0",
+			"birthday": "-",
+			"image": "noimage.jpg"
 		},
 		{
 			"name": "いしかわ",

@@ -445,10 +445,18 @@ function CreateRoundRobinDoubles(shuffle_list){
   }
 
   for(i = 0; i < x.length;i++ ){
+    /*
     if(x[i] != REST){
       round_robin.push(x[i]);
     }
     if(y[i] != REST){
+      round_robin.push(y[i]);
+    }
+    */
+    if(x[i] == REST || y[i] == REST){
+      console.log(x[i] + ":" + y[i]);
+    }else{
+      round_robin.push(x[i]);
       round_robin.push(y[i]);
     }
   }
@@ -461,10 +469,18 @@ function CreateRoundRobinDoubles(shuffle_list){
     y.pop();
     
     for(k = 0; k < x.length;k++ ){
+      /*
       if(x[k] != REST){
         round_robin.push(x[k]);
       }
       if(y[k] != REST){
+        round_robin.push(y[k]);
+      }
+      */
+      if(x[k] == REST || y[k] == REST){
+        console.log(x[k] + ":" + y[k]);
+      }else{
+        round_robin.push(x[k]);
         round_robin.push(y[k]);
       }
     }
@@ -758,6 +774,7 @@ function getNowDateWithString(){
   return result;
 }
 
+/* 桜を降らせる場合は本メソッドを有効化する
 window.addEventListener('DOMContentLoaded', () => {
   // コンテナを指定
   const section = document.querySelector('.cherry-blossom-container');
@@ -779,9 +796,34 @@ window.addEventListener('DOMContentLoaded', () => {
       petalEl.remove();
     }, 10000);
   }
-
   // 花びらを生成する間隔をミリ秒で指定
   setInterval(createPetal, 300);
+});
+*/
+
+$(document).ready(function() {
+  $( 'body' ).flurry({
+    //降らせる文字
+    character: "|",
+    //文字の色
+    color: "deepskyblue",
+    //高さ（どこまで落ちるか）
+    height: 800,
+    //落ちる速度
+    speed: 1500,
+    //回転
+    rotation : 0,
+    rotationVariance :0,
+    startRotation:0,
+    //wind: 200,
+    variance: 100,
+    //最大サイズ
+    large: 25,
+    //最小サイズ
+    small: 10,
+    density: 100,
+    transparency: 0.4
+  });
 });
 
 /* 雪を降らせる場合は本メソッドを有効化する

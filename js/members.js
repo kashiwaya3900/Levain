@@ -56,6 +56,7 @@ $(function(){
   });
 });
 
+/* 桜を降らせる場合は本メソッドを有効化する
 window.addEventListener('DOMContentLoaded', () => {
   // コンテナを指定
   const section = document.querySelector('.cherry-blossom-container');
@@ -80,6 +81,32 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // 花びらを生成する間隔をミリ秒で指定
   setInterval(createPetal, 300);
+});
+*/
+
+$(document).ready(function() {
+  $( 'body' ).flurry({
+    //降らせる文字
+    character: "|",
+    //文字の色
+    color: "deepskyblue",
+    //高さ（どこまで落ちるか）
+    height: 800,
+    //落ちる速度
+    speed: 1500,
+    //回転
+    rotation : 0,
+    rotationVariance :0,
+    startRotation:0,
+    //wind: 200,
+    variance: 100,
+    //最大サイズ
+    large: 25,
+    //最小サイズ
+    small: 10,
+    density: 100,
+    transparency: 0.4
+  });
 });
 
 /* 雪を降らせる場合は本メソッドを有効化する
