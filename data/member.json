@@ -64,6 +64,13 @@
 			"image": "noimage.jpg"
 		},
 		{
+			"name": "あきはま",
+			"age": 44,
+			"gender": "0",
+			"birthday": "-",
+			"image": "noimage.jpg"
+		},
+		{
 			"name": "さとう(た)",
 			"age": 30,
 			"gender": "0",
