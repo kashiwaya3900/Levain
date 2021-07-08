@@ -84,6 +84,7 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 */
 
+/*
 $(document).ready(function() {
   $( 'body' ).flurry({
     //降らせる文字
@@ -108,7 +109,7 @@ $(document).ready(function() {
     transparency: 0.4
   });
 });
-
+*/
 /* 雪を降らせる場合は本メソッドを有効化する
 $(document).ready(function() {
   $( 'body' ).flurry({
