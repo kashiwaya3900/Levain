@@ -828,7 +828,7 @@ $(document).ready(function() {
 });
 */
 
-/* 雪を降らせる場合は本メソッドを有効化する
+/* 雪を降らせる場合は本メソッドを有効化する*/
 $(document).ready(function() {
   $( 'body' ).flurry({
     character: "❄",
@@ -842,4 +842,3 @@ $(document).ready(function() {
     transparency: 0.4
   });
 });
-*/
