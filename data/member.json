@@ -11,8 +11,15 @@
 			"name": "むとう",
 			"age": 30,
 			"gender": "0",
-			"birthday": "-",
+			"birthday": "11/14",
 			"image": "mutou.jpg"
+		},
+		{
+			"name": "かしわや",
+			"age": 30,
+			"gender": "0",
+			"birthday": "10/22",
+			"image": "kashiwaya.jpg"
 		},
 		{
 			"name": "あさべ",
@@ -46,7 +53,7 @@
 			"name": "あいば",
 			"age": 30,
 			"gender": "0",
-			"birthday": "-",
+			"birthday": "7/31",
 			"image": "aiba.jpg"
 		},
 		{
@@ -64,8 +71,8 @@
 			"image": "noimage.jpg"
 		},
 		{
-			"name": "ごーせん",
-			"age": 34,
+			"name": "きたおか",
+			"age": 30,
 			"gender": "0",
 			"birthday": "-",
 			"image": "noimage.jpg"
@@ -73,6 +80,13 @@
 		{
 			"name": "あきはま",
 			"age": 44,
+			"gender": "0",
+			"birthday": "-",
+			"image": "noimage.jpg"
+		},
+		{
+			"name": "ごーせん",
+			"age": 34,
 			"gender": "0",
 			"birthday": "-",
 			"image": "noimage.jpg"
@@ -139,13 +153,6 @@
 			"gender": "1",
 			"birthday": "-",
 			"image": "noimage.jpg"
-		},
-		{
-			"name": "かしわや",
-			"age": 30,
-			"gender": "1",
-			"birthday": "-",
-			"image": "kashiwaya.jpg"
 		},
 		{
 			"name": "さとう(ま)",
