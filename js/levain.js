@@ -26,6 +26,7 @@ function Init() {
       }
       
       var memInfo = new Object();
+      memInfo.no = i;
       memInfo.name = list[i].name;
       memInfo.age = list[i].age;
       memInfo.gender = list[i].gender;
@@ -98,9 +99,6 @@ function TypeSelected(){
 /**
  * 抽選押下時処理
  */
- 
- 
- 
 function Lottery() {
   console.log('Lottery');
   
@@ -158,6 +156,7 @@ function Lottery() {
     //シャッフル
     var shuffle_list = CreateShuffleList(select_member);
     
+    var memList = shuffle_list;
     //メンバ数が奇数の場合は休みの要素を先頭に追加する
     if((shuffle_list.length % 2 ) != 0 ) {
       //奇数の場合
@@ -166,16 +165,265 @@ function Lottery() {
     
     //組み合わせパターン作成
     var round_robin_list = CreateRoundRobinDoubles(shuffle_list);
+    var pairList = [];
+    //2名ずつに組みなおす
+    for (let q=0; q<round_robin_list.length; q = q + 2){
+      pairList.push([round_robin_list[q],round_robin_list[q+1]]);
+    }
     
+    var befMap = new Map();
+    var gameCountMap = new Map();
+    
+    //休みを削除
+    if(shuffle_list[0] == REST){
+      shuffle_list.splice(0,1);
+    }
+    
+    for (let i=0; i<shuffle_list.length; i++){
+      gameCountMap.set(shuffle_list[i],0);
+    }
+    
+    var resList = [];
+    var pair1_count = 0;
+    //試合カウント
+    var current_game_count = 1;
+    while(pairList.length != 0){
+    
+      var pair1;
+      var pair2;
+      var pair1_decision;
+      pair1_decision = false;
+      var pair1_count = 0;
+      var pair2_decision;
+      pair2_decision = false;
+      var pair2_count = 0;
+      
+      if(pairList.length == 1){
+        //pairList=1の場合
+        pair1 = pairList[0];
+        for (let i=0; i<resList.length; i++){
+          pair2 = [resList[i],resList[i+1]];
+          if(pair1[0] == pair2[0] || pair1[0] == pair2[1] || pair1[1] == pair2[0] || pair1[1] == pair2[1]){
+            continue;
+          }else{
+            resList.push(pair1[0]);
+            resList.push(pair1[1]);
+            resList.push(pair2[0]);
+            resList.push(pair2[1]);
+            pairList.splice(0,1);
+            break;
+          }
+        }
+        continue;
+      }
+      
+      //全員がcurrent_game_countになったら+1する
+      if(game_play_Check(shuffle_list,current_game_count,gameCountMap)){
+        current_game_count = current_game_count + 1;
+      }
+      
+      //◆◆◆◆◆
+      //ルール①
+      //◆◆◆◆◆
+      //ペア1決定
+      for (let i=0; i<pairList.length; i++){
+        pair1 = pairList[i];
+        
+        //ペア1が現在の試合カウントを超えていないかチェック
+        if(gameCountMap.get(pair1[0]) > current_game_count){
+          continue;
+        }
+        
+        //ペア1が現在の試合カウントを超えていないかチェック
+        if(gameCountMap.get(pair1[1]) > current_game_count){
+          continue;
+        }
+        pair1_decision = true;
+        pair1_count = i;
+        break;
+      }
+      
+      //ペア2決定
+      for (let j=0; j<pairList.length; j++){
+        pair2 = pairList[j];
+        
+        //ペア1と同じでないか
+        if(pair1[0] == pair2[0] || pair1[0] == pair2[1] || pair1[1] == pair2[0] || pair1[1] == pair2[1]){
+          continue;
+        }
+        
+        //ペア2が現在の試合カウントを超えていないか
+        if(gameCountMap.get(pair2[0]) > current_game_count){
+          continue;
+        }
+        if(gameCountMap.get(pair2[1]) > current_game_count){
+          continue;
+        }
+        
+        if(befMap.size > 0){
+          //前回対戦していないか
+          var pair1bef1;
+          if(befMap.has(pair1[0])){
+            pair1bef1 = befMap.get(pair1[0]);
+            if(pair2[0] == pair1bef1[0] || pair2[0] == pair1bef1[1] || pair2[1] == pair1bef1[0] || pair2[1] == pair1bef1[1]){
+              continue;
+            }
+          }
+          var pair1bef2;
+          if(befMap.has(pair1[1])){
+            pair1bef2 = befMap.get(pair1[1]);
+            if(pair2[0] == pair1bef2[0] || pair2[0] == pair1bef2[1] || pair2[1] == pair1bef2[0] || pair2[1] == pair1bef2[1]){
+              continue;
+            }
+          }
+        }
+        pair2_decision = true;
+        pair2_count = j-1;
+        break;
+      }
+      
+      if(pair1_decision && pair2_decision){
+        //ここまできたら判定1でペア決定
+        resList.push(pair1[0]);
+        resList.push(pair1[1]);
+        resList.push(pair2[0]);
+        resList.push(pair2[1]);
+        pairList.splice(pair1_count,1);
+        pairList.splice(pair2_count,1);
+        gameCountMap.set(pair1[0],gameCountMap.get(pair1[0]) + 1);
+        gameCountMap.set(pair1[1],gameCountMap.get(pair1[1]) + 1);
+        gameCountMap.set(pair2[0],gameCountMap.get(pair2[0]) + 1);
+        gameCountMap.set(pair2[1],gameCountMap.get(pair2[1]) + 1);
+        befMap.set(pair1[0],pair2);
+        befMap.set(pair1[1],pair2);
+        befMap.set(pair2[0],pair1);
+        befMap.set(pair2[1],pair1);
+        
+        continue;
+      }
+      
+      //◆◆◆◆◆
+      //ルール②
+      //◆◆◆◆◆
+      pair1_decision = false;
+      pair2_decision = false;
+      //ペア1決定
+      for (let i=0; i<pairList.length; i++){
+        pair1 = pairList[i];
+        
+        //ペア1が現在の試合カウントを超えていないかチェック
+        if(gameCountMap.get(pair1[0]) > current_game_count){
+          continue;
+        }
+        
+        //ペア1が現在の試合カウントを超えていないかチェック
+        if(gameCountMap.get(pair1[1]) > current_game_count){
+          continue;
+        }
+        pair1_decision = true;
+        pair1_count = i;
+        break;
+      }
+      
+      //ペア2決定
+      for (let j=0; j<pairList.length; j++){
+        pair2 = pairList[j];
+        
+        //ペア1と同じでないか
+        if(pair1[0] == pair2[0] || pair1[0] == pair2[1] || pair1[1] == pair2[0] || pair1[1] == pair2[1]){
+          continue;
+        }
+        
+        //ペア2が現在の試合カウントを超えていないか
+        if(gameCountMap.get(pair2[0]) > current_game_count){
+          continue;
+        }
+        if(gameCountMap.get(pair2[1]) > current_game_count){
+          continue;
+        }
+        
+        pair2_decision = true;
+        pair2_count = j-1;
+        break;
+      }
+      
+      if(pair1_decision && pair2_decision){
+        //ここまできたら判定1でペア決定
+        resList.push(pair1[0]);
+        resList.push(pair1[1]);
+        resList.push(pair2[0]);
+        resList.push(pair2[1]);
+        pairList.splice(pair1_count,1);
+        pairList.splice(pair2_count,1);
+        gameCountMap.set(pair1[0],gameCountMap.get(pair1[0]) + 1);
+        gameCountMap.set(pair1[1],gameCountMap.get(pair1[1]) + 1);
+        gameCountMap.set(pair2[0],gameCountMap.get(pair2[0]) + 1);
+        gameCountMap.set(pair2[1],gameCountMap.get(pair2[1]) + 1);
+        befMap.set(pair1[0],pair2);
+        befMap.set(pair1[1],pair2);
+        befMap.set(pair2[0],pair1);
+        befMap.set(pair2[1],pair1);
+        continue;
+      }
+      
+      //◆◆◆◆◆
+      //ルール③
+      //◆◆◆◆◆
+      pair1_decision = false;
+      pair2_decision = false;
+      //ペア1決定
+      for (let i=0; i<pairList.length; i++){
+        pair1 = pairList[i];
+        
+        pair1_decision = true;
+        pair1_count = i;
+        break;
+      }
+      
+      //ペア2決定
+      for (let j=0; j<pairList.length; j++){
+        pair2 = pairList[j];
+        
+        //ペア1と同じでないか
+        if(pair1[0] == pair2[0] || pair1[0] == pair2[1] || pair1[1] == pair2[0] || pair1[1] == pair2[1]){
+          continue;
+        }
+        
+        pair2_decision = true;
+        pair2_count = j-1;
+        break;
+      }
+      
+      if(pair1_decision && pair2_decision){
+        //ここまできたら判定1でペア決定
+        resList.push(pair1[0]);
+        resList.push(pair1[1]);
+        resList.push(pair2[0]);
+        resList.push(pair2[1]);
+        pairList.splice(pair1_count,1);
+        pairList.splice(pair2_count,1);
+        gameCountMap.set(pair1[0],gameCountMap.get(pair1[0]) + 1);
+        gameCountMap.set(pair1[1],gameCountMap.get(pair1[1]) + 1);
+        gameCountMap.set(pair2[0],gameCountMap.get(pair2[0]) + 1);
+        gameCountMap.set(pair2[1],gameCountMap.get(pair2[1]) + 1);
+        befMap.set(pair1[0],pair2);
+        befMap.set(pair1[1],pair2);
+        befMap.set(pair2[0],pair1);
+        befMap.set(pair2[1],pair1);
+        continue;
+      }
+    }
+    
+    //リストを描画する
     var doublesStr = "";
     var itemCount = 0;
-    var loopCount = Math.floor(round_robin_list.length/4);
+    var loopCount = Math.floor(resList.length/4);
     
     for (let j=0; j < loopCount; j++){
-      var east1 = round_robin_list[itemCount];
-      var east2 = round_robin_list[itemCount+1];
-      var west1 = round_robin_list[itemCount+2];
-      var west2 = round_robin_list[itemCount+3];
+      var east1 = resList[itemCount];
+      var east2 = resList[itemCount+1];
+      var west1 = resList[itemCount+2];
+      var west2 = resList[itemCount+3];
       
       doublesStr = doublesStr + ResultCreateDoubles(east1,east2,west1,west2);
       
@@ -489,7 +737,20 @@ function CreateRoundRobinDoubles(shuffle_list){
   return round_robin;
 }
 
-
+/**
+ * 全員が試合したかチェック
+ */
+function game_play_Check(shuffle_list,current_game_count,gameCountMap){
+  console.log('game_play_Check');
+  
+  for (let i=0; i<shuffle_list.length; i++){
+    if(gameCountMap.get(shuffle_list[i]) < current_game_count){
+      //current_game_count未満があったらまだ全員試合していないのでfalse
+      return false;
+    }
+  }
+  return true;
+}
 
 
 function ResultCreateSingles(player1,player2){
@@ -774,7 +1035,7 @@ function getNowDateWithString(){
   return result;
 }
 
-/* 桜を降らせる場合は本メソッドを有効化する
+/* 桜を降らせる場合は本メソッドを有効化する */
 window.addEventListener('DOMContentLoaded', () => {
   // コンテナを指定
   const section = document.querySelector('.cherry-blossom-container');
@@ -799,7 +1060,7 @@ window.addEventListener('DOMContentLoaded', () => {
   // 花びらを生成する間隔をミリ秒で指定
   setInterval(createPetal, 300);
 });
-*/
+
 
 /*
 $(document).ready(function() {
@@ -828,7 +1089,7 @@ $(document).ready(function() {
 });
 */
 
-/* 雪を降らせる場合は本メソッドを有効化する*/
+/* 雪を降らせる場合は本メソッドを有効化する
 $(document).ready(function() {
   $( 'body' ).flurry({
     character: "❄",
@@ -842,3 +1103,4 @@ $(document).ready(function() {
     transparency: 0.4
   });
 });
+*/

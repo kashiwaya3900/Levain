@@ -56,7 +56,7 @@ $(function(){
   });
 });
 
-/* 桜を降らせる場合は本メソッドを有効化する
+/* 桜を降らせる場合は本メソッドを有効化する */
 window.addEventListener('DOMContentLoaded', () => {
   // コンテナを指定
   const section = document.querySelector('.cherry-blossom-container');
@@ -82,7 +82,6 @@ window.addEventListener('DOMContentLoaded', () => {
   // 花びらを生成する間隔をミリ秒で指定
   setInterval(createPetal, 300);
 });
-*/
 
 /*
 $(document).ready(function() {

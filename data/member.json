@@ -57,14 +57,7 @@
 			"image": "aiba.jpg"
 		},
 		{
-			"name": "つっちー",
-			"age": 30,
-			"gender": "0",
-			"birthday": "-",
-			"image": "noimage.jpg"
-		},
-		{
-			"name": "めぐろ",
+			"name": "つちだて",
 			"age": 30,
 			"gender": "0",
 			"birthday": "-",
@@ -78,6 +71,20 @@
 			"image": "noimage.jpg"
 		},
 		{
+			"name": "おいかわ",
+			"age": 30,
+			"gender": "0",
+			"birthday": "-",
+			"image": "noimage.jpg"
+		},
+		{
+			"name": "めぐろ",
+			"age": 30,
+			"gender": "0",
+			"birthday": "-",
+			"image": "noimage.jpg"
+		},
+		{
 			"name": "あきはま",
 			"age": 44,
 			"gender": "0",
@@ -85,18 +92,18 @@
 			"image": "noimage.jpg"
 		},
 		{
-			"name": "ごーせん",
+			"name": "とりや",
 			"age": 34,
 			"gender": "0",
 			"birthday": "-",
 			"image": "noimage.jpg"
 		},
 		{
-			"name": "さとう(た)",
+			"name": "さいとう",
 			"age": 30,
 			"gender": "0",
 			"birthday": "-",
-			"image": "satot.jpg"
+			"image": "noimage.jpg"
 		},
 		{
 			"name": "くどう",
@@ -107,20 +114,6 @@
 		},
 		{
 			"name": "いしかわ",
-			"age": 30,
-			"gender": "0",
-			"birthday": "-",
-			"image": "noimage.jpg"
-		},
-		{
-			"name": "まつだ",
-			"age": 30,
-			"gender": "0",
-			"birthday": "-",
-			"image": "noimage.jpg"
-		},
-		{
-			"name": "さいとうぶちょう",
 			"age": 30,
 			"gender": "0",
 			"birthday": "-",
@@ -155,7 +148,7 @@
 			"image": "noimage.jpg"
 		},
 		{
-			"name": "さとう(ま)",
+			"name": "さとう",
 			"age": 30,
 			"gender": "1",
 			"birthday": "-",
@@ -163,20 +156,6 @@
 		},
 		{
 			"name": "ふじわら",
-			"age": 30,
-			"gender": "1",
-			"birthday": "-",
-			"image": "noimage.jpg"
-		},
-		{
-			"name": "かみもと",
-			"age": 30,
-			"gender": "1",
-			"birthday": "-",
-			"image": "noimage.jpg"
-		},
-		{
-			"name": "ほそかわ",
 			"age": 30,
 			"gender": "1",
 			"birthday": "-",
