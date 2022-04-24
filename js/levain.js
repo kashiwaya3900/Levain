@@ -259,7 +259,7 @@ function Lottery() {
         if(gameCountMap.get(pair2[1]) > current_game_count){
           continue;
         }
-        
+        /*
         if(befMap.size > 0){
           //前回対戦していないか
           var pair1bef1;
@@ -277,6 +277,7 @@ function Lottery() {
             }
           }
         }
+        */
         pair2_decision = true;
         pair2_count = j-1;
         break;
