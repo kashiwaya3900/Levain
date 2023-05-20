@@ -36,20 +36,6 @@
 			"image": "koyama.jpg"
 		},
 		{
-			"name": "すだ",
-			"age": 30,
-			"gender": "0",
-			"birthday": "-",
-			"image": "noimage.jpg"
-		},
-		{
-			"name": "たなか",
-			"age": 30,
-			"gender": "0",
-			"birthday": "-",
-			"image": "noimage.jpg"
-		},
-		{
 			"name": "あいば",
 			"age": 30,
 			"gender": "0",
@@ -64,21 +50,7 @@
 			"image": "noimage.jpg"
 		},
 		{
-			"name": "きたおか",
-			"age": 30,
-			"gender": "0",
-			"birthday": "-",
-			"image": "noimage.jpg"
-		},
-		{
 			"name": "おいかわ",
-			"age": 30,
-			"gender": "0",
-			"birthday": "-",
-			"image": "noimage.jpg"
-		},
-		{
-			"name": "めぐろ",
 			"age": 30,
 			"gender": "0",
 			"birthday": "-",
@@ -92,28 +64,14 @@
 			"image": "noimage.jpg"
 		},
 		{
-			"name": "とりや",
-			"age": 34,
-			"gender": "0",
-			"birthday": "-",
-			"image": "noimage.jpg"
-		},
-		{
-			"name": "さいとう",
+			"name": "きたおか",
 			"age": 30,
 			"gender": "0",
 			"birthday": "-",
 			"image": "noimage.jpg"
 		},
 		{
-			"name": "くどう",
-			"age": 30,
-			"gender": "0",
-			"birthday": "-",
-			"image": "noimage.jpg"
-		},
-		{
-			"name": "いしかわ",
+			"name": "ながさき",
 			"age": 30,
 			"gender": "0",
 			"birthday": "-",
@@ -142,27 +100,6 @@
 		},
 		{
 			"name": "すずき",
-			"age": 30,
-			"gender": "1",
-			"birthday": "-",
-			"image": "noimage.jpg"
-		},
-		{
-			"name": "さとう",
-			"age": 30,
-			"gender": "1",
-			"birthday": "-",
-			"image": "noimage.jpg"
-		},
-		{
-			"name": "ふじわら",
-			"age": 30,
-			"gender": "1",
-			"birthday": "-",
-			"image": "noimage.jpg"
-		},
-		{
-			"name": "しまだ",
 			"age": 30,
 			"gender": "1",
 			"birthday": "-",
