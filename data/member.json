@@ -92,6 +92,20 @@
 			"image": ""
 		},
 		{
+			"name": "げすとC",
+			"age": 30,
+			"gender": "0",
+			"birthday": "-",
+			"image": ""
+		},
+		{
+			"name": "げすとD",
+			"age": 30,
+			"gender": "0",
+			"birthday": "-",
+			"image": ""
+		},
+		{
 			"name": "のと",
 			"age": 30,
 			"gender": "1",
@@ -114,6 +128,20 @@
 		},
 		{
 			"name": "げすと2",
+			"age": 30,
+			"gender": "1",
+			"birthday": "-",
+			"image": ""
+		},
+		{
+			"name": "げすと3",
+			"age": 30,
+			"gender": "1",
+			"birthday": "-",
+			"image": ""
+		},
+		{
+			"name": "げすと4",
 			"age": 30,
 			"gender": "1",
 			"birthday": "-",
