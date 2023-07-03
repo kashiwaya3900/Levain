@@ -16,7 +16,7 @@
 		},
 		{
 			"name": "かしわや",
-			"age": 30,
+			"age": 35,
 			"gender": "0",
 			"birthday": "10/22",
 			"image": "kashiwaya.jpg"
@@ -92,20 +92,6 @@
 			"image": ""
 		},
 		{
-			"name": "げすとC",
-			"age": 30,
-			"gender": "0",
-			"birthday": "-",
-			"image": ""
-		},
-		{
-			"name": "げすとD",
-			"age": 30,
-			"gender": "0",
-			"birthday": "-",
-			"image": ""
-		},
-		{
 			"name": "のと",
 			"age": 30,
 			"gender": "1",
@@ -128,20 +114,6 @@
 		},
 		{
 			"name": "げすと2",
-			"age": 30,
-			"gender": "1",
-			"birthday": "-",
-			"image": ""
-		},
-		{
-			"name": "げすと3",
-			"age": 30,
-			"gender": "1",
-			"birthday": "-",
-			"image": ""
-		},
-		{
-			"name": "げすと4",
 			"age": 30,
 			"gender": "1",
 			"birthday": "-",
