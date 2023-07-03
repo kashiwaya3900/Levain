@@ -1,0 +1,11 @@
+仕組みと使い方がわかる Docker&Kubernetesのきほんのきほん
+https://www.amazon.co.jp/dp/4839972745/?coliid=I1Y0XUOFUYBCFI&colid=35FYKZZ1ARI3Y&psc=1&ref_=list_c_wl_gv_ov_lig_pi_dp
+
+基礎＆応用力をしっかり育成！Androidアプリ開発の教科書 第3版 Kotlin対応 なんちゃって開発者にならないための実践ハンズオン
+https://www.amazon.co.jp/dp/4798176133/?coliid=I3687PIGF34Y3P&colid=35FYKZZ1ARI3Y&psc=1&ref_=list_c_wl_gv_ov_lig_pi_dp
+
+Kotlin サーバーサイドプログラミング実践開発
+https://www.amazon.co.jp/dp/4297118599/?coliid=I5WI6JD4JREOE&colid=35FYKZZ1ARI3Y&psc=1&ref_=list_c_wl_gv_ov_lig_pi_dp
+
+TECHNICAL MASTER はじめてのAndroidアプリ開発 Kotlin編
+https://www.amazon.co.jp/dp/B09MHF7F6N/?coliid=I3T4XKU7YG9E1Q&colid=35FYKZZ1ARI3Y&psc=0&ref_=list_c_wl_gv_ov_lig_pi_dp
