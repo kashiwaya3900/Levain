@@ -1,13 +1,6 @@
 {
 	"member_list": [
 		{
-			"name": "いしい",
-			"age": 30,
-			"gender": "0",
-			"birthday": "-",
-			"image": "ishii.jpg"
-		},
-		{
 			"name": "むとう",
 			"age": 35,
 			"gender": "0",
@@ -50,7 +43,7 @@
 			"image": "noimage.jpg"
 		},
 		{
-			"name": "おいかわ",
+			"name": "ながさき",
 			"age": 30,
 			"gender": "0",
 			"birthday": "-",
@@ -64,18 +57,18 @@
 			"image": "noimage.jpg"
 		},
 		{
-			"name": "きたおか",
+			"name": "おいかわ",
 			"age": 30,
 			"gender": "0",
 			"birthday": "-",
 			"image": "noimage.jpg"
 		},
 		{
-			"name": "ながさき",
+			"name": "いしい",
 			"age": 30,
 			"gender": "0",
 			"birthday": "-",
-			"image": "noimage.jpg"
+			"image": "ishii.jpg"
 		},
 		{
 			"name": "げすとA",
